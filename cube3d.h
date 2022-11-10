@@ -34,13 +34,29 @@ typedef struct s_mlx
 	void	*win;
 
 }		t_mlx;
+typedef struct s_player
+{
+	int		pos_x;
+	int		pos_y;
+}		t_player;
 
 typedef struct s_map
 {
-	void	*img;
-	char	**tab_map;
-	int		lon;
-	int		larg;
-}
+	void		*img;
+	char		**tab_map;
+	int			lon;
+	int			larg;
+	t_mlx		*mlx;
+	t_player	*player;
+}		t_map;
+
+/////////// INIT ///////////
+void	init(t_map *map);
+void	init_map(t_map *map);
+void	init_player(t_map *map);
+
+////////// ERROR //////////
+int		erreur_args(int argc, char **argv);
+int		check_arg(char *c);
 
 #endif
