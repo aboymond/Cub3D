@@ -1,6 +1,8 @@
 #ifndef CUBE3D_H
 # define CUBE3D_H
 
+# include "libft/libft.h"
+
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
 #  define LEFT_KEY				123	
@@ -26,7 +28,6 @@
 #  define ESC					65307
 # endif
 
-#include "./libft/libft.h"
 
 typedef struct s_mlx
 {
@@ -44,19 +45,26 @@ typedef struct s_map
 {
 	void		*img;
 	char		**tab_map;
-	int			lon;
-	int			larg;
 	t_mlx		*mlx;
 	t_player	*player;
 }		t_map;
 
 /////////// INIT ///////////
 void	init(t_map *map);
-void	init_map(t_map *map);
+void	init_struct_map(t_map *map);
 void	init_player(t_map *map);
+void	callocmap(t_map *map, int haut);
 
 ////////// ERROR //////////
 int		erreur_args(int argc, char **argv);
 int		check_arg(char *c);
+
+////////// INIT MAP //////////
+void	compt_map_haut(char *args, t_map *map);
+void	compt_map(char *args, t_map *map, int haut);
+void	init_tab_map(char *args, t_map *map, int *larg, int haut);
+
+////////// FREE //////////
+int		free_main(t_map *map);
 
 #endif

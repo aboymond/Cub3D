@@ -5,8 +5,8 @@ NAME			=		cube3d
 #***** Sources / Objs *****#
 
 SRC				=		main.c \
-						$(addprefix ./init, init_base.c)
-						$(addprefix ./error, error_args.c)
+						$(addprefix ./init/, init_base.c init_map.c)\
+						$(addprefix ./error/, error_args.c)
 
 OBJS			=		$(SRC:.c=.o)
 
@@ -62,7 +62,7 @@ MLXLIB			=		./src_mlx/mlx-linux/libmlx.a
 DIR_MLX			=		./src_mlx/mlx-linux/
 LIBFT_MLX		=		$(MAKE) -C libft && $(MAKE) -C ./src_mlx/mlx-linux
 LIBS			=		-L ./src_mlx/mlx-linux/ -lmlx -Ilmlx -lXext -lX11
-HEADER			=		-I./includes -I./libft/libft.h -I./src_mlx/mlx/mlx.h
+HEADER			=		-I./includes -I./libft/ -I./src_mlx/mlx-linux/
 endif
 
 #***** Compilation *****#
@@ -88,12 +88,12 @@ logo :
 
 $(NAME) :	${OBJS}
 			@$(BS_N)
-			@${CC} ${CFLAGS} -o ${NAME} ${LIBFT}  ${OBJS} ${LIBS} ${HEADER}
+			@${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${LIBS} ${HEADER} -o ${NAME}
 			@$(END_COMP)
 
 l :			${OBJS}
-			${LIBFT_MLX} all
-			${CC} ${L} -o ${NAME} ${OBJS} ${LIBFT} ${LIBS} ${HEADER}
+			@${LIBFT_MLX} all
+			@${CC} ${L} ${OBJS} ${LIBFT} ${LIBS} ${HEADER} -o ${NAME}
 			@$(END_COMP)
 
 #***** Clean *****#
