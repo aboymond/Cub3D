@@ -32,3 +32,8 @@ int	check_arg(char *c)
 	}
 	return (0);
 }
+
+int	p_error(char *error)
+{
+	
+}

@@ -9,6 +9,7 @@ void	compt_map_haut(char *args, t_map *map)
 	haut = 0;
 	fd = open(args, O_RDONLY);
 	tmp = get_next_line(fd);
+	haut++;
 	while (tmp)
 	{
 		free(tmp);
@@ -57,13 +58,48 @@ void	init_tab_map(char *args, t_map *map, int *larg, int haut)
 	i++;
 	while (i < haut)
 	{
-		
+		printf("haut = %d\n", haut);
 		map->tab_map[i] = get_next_line(fd);
 		printf("map tab = %s\n", map->tab_map[i]);
 		i++;
-		//map->tab_map[i][larg[i]] = '\n';
 	}
-	printf("map = %s , i = %d, len = %d\n", map->tab_map[i], i, (int)ft_strlen(map->tab_map[i]));
-	//map->tab_map[i][larg[i - 1]] = '\n';
+	printf("tablen init tab = %d\n", ft_tablen(map->tab_map));
 	close(fd);
+}
+
+int	map_is_close(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map->tab_map[i])
+	{
+		j = 0;
+		while (map->tab_map[i][j])
+		{
+			check_wall(map, i, j);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	check_wall(t_map *map, int i, int j)
+{
+	//printf("i = %d, j = %d\n", i, j);
+	if (map->tab_map[0][j] == '0' || map->tab_map[ft_tablen(map->tab_map) - 1][j] == '0')
+		printf("error map '0' !\n");
+	if (map->tab_map[i][0] == '0' || map->tab_map[i][(int)ft_strlen(map->tab_map[i] - 1)] == '0')
+	{
+		printf("error map '0' !\n");
+	}
+	if (map->tab_map[i][j] == '0')
+	{
+		if (map->tab_map[i - 1][j] == ' ' || map->tab_map[i + 1][j] == ' ' || map->tab_map[i][j - 1] == ' ' || map->tab_map[i][j + 1] == ' ')
+			printf("error map, i = %d, j = %d ' ' \n", i, j);
+	}
+
+	return (0);
 }

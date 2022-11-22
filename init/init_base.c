@@ -19,5 +19,5 @@ void	init_player(t_map *map)
 
 void	callocmap(t_map *map, int haut)
 {
-	map->tab_map = ft_calloc(haut, sizeof(char *));
+	map->tab_map = ft_calloc(haut, sizeof(char));
 }

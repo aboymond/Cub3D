@@ -29,6 +29,7 @@
 # endif
 
 
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -63,6 +64,8 @@ int		check_arg(char *c);
 void	compt_map_haut(char *args, t_map *map);
 void	compt_map(char *args, t_map *map, int haut);
 void	init_tab_map(char *args, t_map *map, int *larg, int haut);
+int		map_is_close(t_map *map);
+int		check_wall(t_map *map, int i, int j);
 
 ////////// FREE //////////
 int		free_main(t_map *map);

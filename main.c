@@ -12,6 +12,7 @@ int	main(int argc, char **argv)
 	erreur_args(argc, argv);
 	init(map);
 	compt_map_haut(argv[1], map);
+	map_is_close(map);
 	free_main(map);
 
 	return (0);
