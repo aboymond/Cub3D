@@ -3,35 +3,31 @@
 
 int	main(int argc, char **argv)
 {
-	t_map	*map;
+	t_scene	*scene;
 
-	map = malloc(sizeof(t_map));
-	map->player = malloc(sizeof(t_player));
-	map->mlx = malloc(sizeof(t_map));
-	map->mlx->mlx = mlx_init();
+	scene = malloc(sizeof(t_scene));
+	scene->mlx.mlx = mlx_init();
 	erreur_args(argc, argv);
-	init(map);
-	compt_map_haut(argv[1], map);
-	map_is_close(map);
-	free_main(map);
+	init(scene);
+	compt_map_haut(argv[1], scene);
+	map_is_close(scene);
+	free_main(scene);
 
 	return (0);
 }
 
-int	free_main(t_map *map)
+int	free_main(t_scene *scene)
 {
 	int	i;
 
 	i = 0;
-	while (map->tab_map[i])
+	while (scene->map.tab_map[i])
 	{
-		free(map->tab_map[i]);
+		free(scene->map.tab_map[i]);
 		i++;
 	}
-	free(map->tab_map);
-	free(map->player);
-	free(map->mlx->mlx);
-	free(map->mlx);
-	free(map);
+	free(scene->map.tab_map);
+	free(scene->mlx.mlx);
+	free(scene);
 	return (0);
 }

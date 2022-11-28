@@ -35,5 +35,6 @@ int	check_arg(char *c)
 
 int	p_error(char *error)
 {
-	
+	printf("%s", error);
+	exit (EXIT_FAILURE);
 }

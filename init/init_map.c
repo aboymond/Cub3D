@@ -1,13 +1,23 @@
 #include "../cube3d.h"
 
-void	compt_map_haut(char *args, t_map *map)
+void	compt_map_haut(char *args, t_scene *scene)
 {
 	char	*tmp;
 	int		fd;
 	int		haut;
+	int		j;
 
 	haut = 0;
+	j = 0;
+
 	fd = open(args, O_RDONLY);
+	if (init_asset(args, scene) != 1)
+		return ;
+	while (j < scene->asset.cmpt_asset_tab)
+	{
+		get_next_line(fd);
+		j++;
+	}
 	tmp = get_next_line(fd);
 	haut++;
 	while (tmp)
@@ -17,10 +27,10 @@ void	compt_map_haut(char *args, t_map *map)
 		haut++;
 	}
 	close(fd);
-	compt_map(args, map, haut);
+	compt_map(args, scene, haut);
 }
 
-void	compt_map(char *args, t_map *map, int haut)
+void	compt_map(char *args, t_scene *scene, int haut)
 {
 	char	*tmp;
 	int		*larg;
@@ -40,45 +50,48 @@ void	compt_map(char *args, t_map *map, int haut)
 	}
 	larg[i - 1]++;
 	close(fd);
-	callocmap(map, haut);
-	init_tab_map(args, map, larg, haut);
+	callocmap(scene, haut);
+	init_tab_map(args, scene, larg, haut);
 	free(larg);
 }
 
-void	init_tab_map(char *args, t_map *map, int *larg, int haut)
+void	init_tab_map(char *args, t_scene *scene, int *larg, int haut)
 {
 	int		fd;
 	int		i;
+	int		j;
 	(void)larg;
 
 	i = 0;
+	j = 0;
 	fd = open(args, O_RDONLY);
-	map->tab_map[i] = get_next_line(fd);
-	printf("map tab = %s\n", map->tab_map[i]);
+	while (j < scene->asset.cmpt_asset_tab)
+	{
+		get_next_line(fd);
+		j++;
+	}
+	scene->map.tab_map[i] = get_next_line(fd);
 	i++;
 	while (i < haut)
 	{
-		printf("haut = %d\n", haut);
-		map->tab_map[i] = get_next_line(fd);
-		printf("map tab = %s\n", map->tab_map[i]);
+		scene->map.tab_map[i] = get_next_line(fd);
 		i++;
 	}
-	printf("tablen init tab = %d\n", ft_tablen(map->tab_map));
 	close(fd);
 }
 
-int	map_is_close(t_map *map)
+int	map_is_close(t_scene *scene)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map->tab_map[i])
+	while (scene->map.tab_map[i])
 	{
 		j = 0;
-		while (map->tab_map[i][j])
+		while (scene->map.tab_map[i][j])
 		{
-			check_wall(map, i, j);
+			check_wall(scene, i, j);
 			j++;
 		}
 		i++;
@@ -86,18 +99,18 @@ int	map_is_close(t_map *map)
 	return (0);
 }
 
-int	check_wall(t_map *map, int i, int j)
+int	check_wall(t_scene *scene, int i, int j)
 {
 	//printf("i = %d, j = %d\n", i, j);
-	if (map->tab_map[0][j] == '0' || map->tab_map[ft_tablen(map->tab_map) - 1][j] == '0')
+	if (scene->map.tab_map[0][j] == '0' || scene->map.tab_map[ft_tablen(scene->map.tab_map) - 1][j] == '0')
 		printf("error map '0' !\n");
-	if (map->tab_map[i][0] == '0' || map->tab_map[i][(int)ft_strlen(map->tab_map[i] - 1)] == '0')
+	else if (scene->map.tab_map[i][0] == '0' || scene->map.tab_map[i][(int)ft_strlen(scene->map.tab_map[i] - 1)] == '0')
 	{
 		printf("error map '0' !\n");
 	}
-	if (map->tab_map[i][j] == '0')
+	else if (scene->map.tab_map[i][j] == '0')
 	{
-		if (map->tab_map[i - 1][j] == ' ' || map->tab_map[i + 1][j] == ' ' || map->tab_map[i][j - 1] == ' ' || map->tab_map[i][j + 1] == ' ')
+		if (scene->map.tab_map[i - 1][j] == ' ' || scene->map.tab_map[i + 1][j] == ' ' || scene->map.tab_map[i][j - 1] == ' ' || scene->map.tab_map[i][j + 1] == ' ')
 			printf("error map, i = %d, j = %d ' ' \n", i, j);
 	}
 

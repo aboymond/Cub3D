@@ -5,7 +5,7 @@ NAME			=		cube3d
 #***** Sources / Objs *****#
 
 SRC				=		main.c \
-						$(addprefix ./init/, init_base.c init_map.c)\
+						$(addprefix ./init/, init_base.c init_map.c init_asset.c)\
 						$(addprefix ./error/, error_args.c)
 
 OBJS			=		$(SRC:.c=.o)
