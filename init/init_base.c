@@ -32,4 +32,7 @@ void	init_asset_var(t_scene *scene)
 void	callocmap(t_scene *scene, int haut)
 {
 	scene->map.tab_map = ft_calloc(haut, sizeof(char));
+
+
+	
 }
