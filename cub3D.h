@@ -47,7 +47,9 @@ typedef struct s_asset
 	int			cmpt_asset;
 	int			cmpt_asset_tab;
 	int			int_NSWE;
+	int			nbr_NSWE;
 	int			int_color;
+	int			nbr_color;
 }		t_asset;
 typedef struct s_map
 {
@@ -99,6 +101,9 @@ int		init_asset_tab(t_scene *scene, char *line);
 int		init_asset(char *args, t_scene *scene);
 int		check_asset(t_scene *scene, char *line);
 void	callocmap(t_scene *scene, int haut);
+int		compt_asset(char *args, t_scene *scene);
+int		nb_of_asset(char *line, t_asset *asset);
+int		malloc_asset(t_asset *asset);
 
 ////////// ERROR //////////
 int		erreur_args(int argc, char **argv);

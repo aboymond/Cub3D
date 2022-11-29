@@ -1,3 +1,5 @@
 **/*.o
 ./libft/libft.a
-cube3d
+cub3D
+./map
+./src_mlx
