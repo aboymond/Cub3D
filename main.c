@@ -1,5 +1,5 @@
 
-#include "cube3d.h"
+#include "cub3D.h"
 
 int	main(int argc, char **argv)
 {
@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 	scene->mlx.mlx = mlx_init();
 	erreur_args(argc, argv);
 	init(scene);
-	compt_map_haut(argv[1], scene);
+	compt_map(argv[1], scene);
 	map_is_close(scene);
 	free_main(scene);
 

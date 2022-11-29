@@ -1,15 +1,15 @@
-#include "../cube3d.h"
+#include "../cub3D.h"
 
 int	erreur_args(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_printf("\033[1;31m Error:\n\tErreur d'arguments \033[00m \n", 1);
+		return (p_error("Error:\n\tInvalid arguments"));
 		exit (0);
 	}
 	if (check_arg(argv[1]) != 1)
 	{
-		ft_printf("\033[1;31m Error:\n\t'.cub' Non valide\033[00m \n", 1);
+		return (p_error("Error:\n\tInvalid arguments"));
 		exit (0);
 	}
 	return (0);
@@ -35,6 +35,6 @@ int	check_arg(char *c)
 
 int	p_error(char *error)
 {
-	printf("%s", error);
+	printf("\033[1;31m%s\033[00m \n", error);
 	exit (EXIT_FAILURE);
 }
