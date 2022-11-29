@@ -6,7 +6,8 @@ NAME			=		cube3d
 
 SRC				=		main.c \
 						$(addprefix ./init/, init_base.c init_map.c init_asset.c)\
-						$(addprefix ./error/, error_args.c)
+						$(addprefix ./error/, error_args.c) \
+						$(addprefix ./asset/, asset_is_valid.c)
 
 OBJS			=		$(SRC:.c=.o)
 

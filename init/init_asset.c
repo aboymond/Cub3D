@@ -32,7 +32,7 @@ int check_asset(t_scene *scene, char *line)
 {
 	if (init_asset_tab(scene, line) == 1)
 	{
-		if (!scene->asset.asset_color || !scene->asset.asset_NSWE || scene->asset.cmpt_asset != 6)
+		if (!scene->asset.asset_color || !scene->asset.asset_NSWE)
 		{
 			p_error("Error: \n\tMap asset = NULL !");
 		}
@@ -50,14 +50,14 @@ int	init_asset_tab(t_scene *scene, char *line)
 	{
 		if (ft_strchr("NSWE", line[i]))
 		{
-			scene->asset.asset_NSWE[scene->asset.int_NSWE] = line;
+			scene->asset.asset_NSWE[scene->asset.int_NSWE] = ft_strdup(line);
 			scene->asset.int_NSWE++;
 			scene->asset.cmpt_asset++;
 			return (0);
 		}
 		else if (ft_strchr("FC", line[i]))
 		{
-			scene->asset.asset_color[scene->asset.int_color] = line;
+			scene->asset.asset_color[scene->asset.int_color] = ft_strdup(line);
 			scene->asset.int_color++;
 			scene->asset.cmpt_asset++;
 			return (0);
