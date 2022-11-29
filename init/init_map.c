@@ -1,6 +1,6 @@
 #include "../cube3d.h"
 
-void	compt_map_haut(char *args, t_scene *scene)
+void	compt_map(char *args, t_scene *scene)
 {
 	char	*tmp;
 	int		fd;
@@ -13,6 +13,8 @@ void	compt_map_haut(char *args, t_scene *scene)
 	fd = open(args, O_RDONLY);
 	if (init_asset(args, scene) != 1)
 		return ;
+	printf("asset = %s\n", scene->asset.asset_NSWE[0]);
+	asset_is_valid(&scene->asset);
 	while (j < scene->asset.cmpt_asset_tab)
 	{
 		get_next_line(fd);
@@ -27,40 +29,15 @@ void	compt_map_haut(char *args, t_scene *scene)
 		haut++;
 	}
 	close(fd);
-	compt_map(args, scene, haut);
-}
-
-void	compt_map(char *args, t_scene *scene, int haut)
-{
-	char	*tmp;
-	int		*larg;
-	int		fd;
-	int		i;
-
-	i = 0;
-	larg = ft_calloc(haut, sizeof(int));
-	fd = open(args, O_RDONLY);
-	tmp = get_next_line(fd);
-	larg[i] = (int)ft_strlen(tmp);
-	while (tmp)
-	{
-		free(tmp);
-		tmp = get_next_line(fd);
-		larg[++i] = (int)ft_strlen(tmp);
-	}
-	larg[i - 1]++;
-	close(fd);
 	callocmap(scene, haut);
-	init_tab_map(args, scene, larg, haut);
-	free(larg);
+	init_tab_map(args, scene, haut);
 }
 
-void	init_tab_map(char *args, t_scene *scene, int *larg, int haut)
+void	init_tab_map(char *args, t_scene *scene, int haut)
 {
 	int		fd;
 	int		i;
 	int		j;
-	(void)larg;
 
 	i = 0;
 	j = 0;

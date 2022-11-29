@@ -105,10 +105,18 @@ int		erreur_args(int argc, char **argv);
 int		check_arg(char *c);
 int		p_error(char *error);
 
+////////// ASSET //////////
+int valid_p_cardinal_name(char *str, int i);
+int	asset_p_cardinal(t_asset *asset);
+int asset_color(t_asset *asset);
+int	name_is_valid(char *str, int i);
+int	asset_is_valid(t_asset *asset);
+int	valid_color_name(char *str, int i);
+
+
 ////////// INIT MAP //////////
-void	compt_map_haut(char *args, t_scene *scene);
-void	compt_map(char *args, t_scene *scene, int haut);
-void	init_tab_map(char *args, t_scene *scene, int *larg, int haut);
+void	compt_map(char *args, t_scene *scene);
+void	init_tab_map(char *args, t_scene *scene, int haut);
 int		map_is_close(t_scene *scene);
 int		check_wall(t_scene *scene, int i, int j);
 
