@@ -1,13 +1,14 @@
-#include "../cube3d.h"
+#include "../cub3D.h"
 
 int	init_asset(char *args, t_scene *scene)
 {
 	char	*tmp;
 	int		fd;
 
+	compt_asset(args, scene);
 	fd = open(args, O_RDONLY);
 	tmp = get_next_line(fd);
-	if (check_asset(scene, tmp) == 1)
+	if (tmp == NULL || check_asset(scene, tmp) == 1)
 	{
 		close (fd);
 		return (1);
@@ -17,7 +18,7 @@ int	init_asset(char *args, t_scene *scene)
 	{
 		free (tmp);
 		tmp = get_next_line(fd);
-		if (check_asset(scene, tmp) == 1)
+		if (tmp == NULL || check_asset(scene, tmp) == 1)
 		{
 			close (fd);
 			return (1);

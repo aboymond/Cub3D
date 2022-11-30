@@ -1,4 +1,4 @@
-#include "../cube3d.h"
+#include "../cub3D.h"
 
 void	init(t_scene *scene)
 {
@@ -23,16 +23,13 @@ void	init_asset_var(t_scene *scene)
 
 	scene->asset.cmpt_asset = 0;
 	scene->asset.cmpt_asset_tab = 0;
-	scene->asset.asset_color = ft_calloc(10, sizeof(char));
 	scene->asset.int_color = 0;
-	scene->asset.asset_NSWE = ft_calloc(10, sizeof(char));
+	scene->asset.nbr_color = 0;
 	scene->asset.int_NSWE = 0;
+	scene->asset.nbr_NSWE = 0;
 }
 
 void	callocmap(t_scene *scene, int haut)
 {
 	scene->map.tab_map = ft_calloc(haut, sizeof(char));
-
-
-	
 }
