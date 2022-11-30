@@ -3,6 +3,13 @@
 
 # include "libft/libft.h"
 
+# define RED 0x00FF0000
+# define YEL 0x00FFFF00
+# define GREEN 0x003AFF00
+# define GRE 0x00808080
+# define BLU 0x00002EFF
+# define WHI 0x00FFFFFF
+
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
 #  define LEFT_KEY				123	
@@ -53,16 +60,23 @@ typedef struct s_asset
 }		t_asset;
 typedef struct s_map
 {
-	void		*img;
 	char		**tab_map;
 }		t_map;
 
-typedef	struct s_img
-{
-	void	*mlx_img;
-	int		width;
-	int		height;
-} t_img;
+typedef struct	s_img {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_img;
+
+// typedef	struct s_img
+// {
+// 	void	*mlx_img;
+// 	int		width;
+// 	int		height;
+// } t_img;
 
 typedef struct s_scene
 {
@@ -127,5 +141,13 @@ int		check_wall(t_scene *scene, int i, int j);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
+
+
+///////// TEST ///////////
+int		open_win(t_scene *scene);
+int		mxl_pixel_put(t_scene *scene, int x, int y, int color);
+int		mini_map_pixel(t_scene *scene, int x, int y, int floor, int size);
+int		mini_map_init(t_scene *scene);
+int		mini_map_pixel_border(t_scene *scene, int x, int y, int size);
 
 #endif
