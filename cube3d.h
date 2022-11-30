@@ -112,6 +112,10 @@ int asset_color(t_asset *asset);
 int	name_is_valid(char *str, int i);
 int	asset_is_valid(t_asset *asset);
 int	valid_color_name(char *str, int i);
+int	value_color(t_asset *asset);
+int valid_color(char *str);
+
+
 
 
 ////////// INIT MAP //////////
