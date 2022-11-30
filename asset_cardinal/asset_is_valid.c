@@ -24,7 +24,7 @@ int	asset_p_cardinal(t_asset *asset)
 		while (asset->asset_NSWE[i][j] != ' ')
 		{
 			tmp[j] = asset->asset_NSWE[i][j];
-			printf("asset_p_cardinal: tmp[%d] = %c\n", j, tmp[j]);
+			//printf("asset_p_cardinal: tmp[%d] = %c\n", j, tmp[j]);
 			j++;
 		}
 		if (valid_p_cardinal_name(tmp, i) == -1)
