@@ -111,14 +111,21 @@ int		check_arg(char *c);
 int		p_error(char *error);
 
 ////////// ASSET //////////
-int valid_p_cardinal_name(char *str, int i);
-int	asset_p_cardinal(t_asset *asset);
-int asset_color(t_asset *asset);
-int	name_is_valid(char *str, int i);
-int	asset_is_valid(t_asset *asset);
-int	valid_color_name(char *str, int i);
-int	value_color(t_asset *asset);
-int valid_color(char *str);
+int 	valid_p_cardinal_name(char *str, int i);
+int		asset_p_cardinal(t_asset *asset);
+int 	asset_color(t_asset *asset);
+int		name_is_valid(char *str, int i);
+int		asset_is_valid(t_asset *asset);
+int		valid_color_name(char *str, int i);
+int		value_color(t_asset *asset);
+int 	valid_color(char *str);
+int		color_into_d_tab(char *str);
+int		is_a_digit(char **trim_str);
+int		color_rvb(char **trim_str);
+int 	count_nbr_color(char **tab_color);
+
+
+
 
 
 
@@ -131,5 +138,6 @@ int		check_wall(t_scene *scene, int i, int j);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
+void	free_d_tab(char **str);
 
 #endif
