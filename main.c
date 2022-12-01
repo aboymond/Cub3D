@@ -11,7 +11,9 @@ int	main(int argc, char **argv)
 	init(scene);
 	compt_map(argv[1], scene);
 	map_is_close(scene);
-	free_main(scene);
+	open_win(scene);
+	mlx_loop(scene->mlx.mlx);
+	//free_main(scene);
 
 	return (0);
 }

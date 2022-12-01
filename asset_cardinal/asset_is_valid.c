@@ -1,4 +1,4 @@
-#include "../cube3d.h"
+#include "../cub3D.h"
 
 int	asset_is_valid(t_asset *asset)
 {
