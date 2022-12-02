@@ -109,6 +109,7 @@ typedef struct	s_map
 } t_map;
 */
 
+
 /////////// INIT ///////////
 void	init(t_scene *scene);
 void	init_struct_map(t_scene *scene);
@@ -121,6 +122,12 @@ void	callocmap(t_scene *scene, int haut);
 int		compt_asset(char *args, t_scene *scene);
 int		nb_of_asset(char *line, t_asset *asset);
 int		malloc_asset(t_asset *asset);
+
+////////// INIT MAP //////////
+int		compt_map(char *args, t_scene *scene);
+void	init_tab_map(char *args, t_scene *scene, int haut);
+int		map_is_close(t_scene *scene);
+int		check_wall(t_scene *scene, int i, int j);
 
 ////////// ERROR //////////
 int		erreur_args(int argc, char **argv);
@@ -147,11 +154,6 @@ int 	count_nbr_color(char **tab_color);
 
 
 
-////////// INIT MAP //////////
-void	compt_map(char *args, t_scene *scene);
-void	init_tab_map(char *args, t_scene *scene, int haut);
-int		map_is_close(t_scene *scene);
-int		check_wall(t_scene *scene, int i, int j);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
