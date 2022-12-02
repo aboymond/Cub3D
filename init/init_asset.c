@@ -10,6 +10,7 @@ int	init_asset(char *args, t_scene *scene)
 	tmp = get_next_line(fd);
 	if (tmp == NULL || check_asset(scene, tmp) == 1)
 	{
+		free (tmp);
 		close (fd);
 		return (1);
 	}
@@ -20,11 +21,13 @@ int	init_asset(char *args, t_scene *scene)
 		tmp = get_next_line(fd);
 		if (tmp == NULL || check_asset(scene, tmp) == 1)
 		{
+			free (tmp);
 			close (fd);
 			return (1);
 		}
 		scene->asset.cmpt_asset_tab++;
 	}
+	free (tmp);
 	close (fd);
 	return (0);
 }
@@ -45,6 +48,7 @@ int check_asset(t_scene *scene, char *line)
 int	init_asset_tab(t_scene *scene, char *line)
 {
 	int	i;
+	(void)scene;
 
 	i = 0;
 	while (line[i])
@@ -56,14 +60,14 @@ int	init_asset_tab(t_scene *scene, char *line)
 			scene->asset.cmpt_asset++;
 			return (0);
 		}
-		else if (ft_strchr("FC", line[i]))
+		if (ft_strchr("FC", line[i]))
 		{
 			scene->asset.asset_color[scene->asset.int_color] = ft_strdup(line);
 			scene->asset.int_color++;
 			scene->asset.cmpt_asset++;
 			return (0);
 		}
-		else if (ft_strchr("01", line[i]))
+		if (ft_strchr("01", line[i]))
 		{
 			return (1);
 		}

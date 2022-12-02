@@ -47,7 +47,7 @@ int	nb_of_asset(char *line, t_asset *asset)
 
 int	malloc_asset(t_asset *asset)
 {
-	asset->asset_color = ft_calloc(asset->nbr_color + 1, sizeof(char));
-	asset->asset_NSWE = ft_calloc(asset->nbr_NSWE + 1, sizeof(char));
+	asset->asset_color = ft_calloc(asset->nbr_color + 1, sizeof(char *));
+	asset->asset_NSWE = ft_calloc(asset->nbr_NSWE + 1, sizeof(char *));
 	return (0);
 }
