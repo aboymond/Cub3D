@@ -61,6 +61,9 @@ typedef struct s_asset
 typedef struct s_map
 {
 	char		**tab_map;
+	int			len_map;
+	int			x;
+	int			y;
 }		t_map;
 
 typedef struct	s_img {
@@ -154,6 +157,9 @@ int		check_wall(t_scene *scene, int i, int j);
 int		free_main(t_scene *scene);
 void	free_d_tab(char **str);
 
+///////// UTILS ///////////
+int		comp_size_len(t_scene *scene, char *line);
+int		cpy_map_to_tab(t_scene *scene, char *line, int i);
 
 ///////// TEST ///////////
 int		open_win(t_scene *scene);

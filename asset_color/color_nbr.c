@@ -35,7 +35,7 @@ int	color_rvb(char **trim_str)
 	int	*color;
 
 	i = 0;
-	color = malloc(sizeof(int) * 3);
+	color = ft_calloc(sizeof(int), 3);
 	while (trim_str[i])
 	{
 		// printf("trim_str[i] = %s\n", trim_str[i]);

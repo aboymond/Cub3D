@@ -100,10 +100,10 @@ int	mini_map_init(t_scene *scene)
 	size = 15;
 	while (y < ft_tablen(scene->map.tab_map))
 	{
-		while (x < (int)ft_strlen(scene->map.tab_map[y]))
+		while (x < scene->map.len_map || scene->map.tab_map[y][x])
 		{
-			// if (scene->map.tab_map[y][x] == ' ')
-			// 	scene->map.tab_map[y][x] = '1';
+			if (scene->map.tab_map[y][x] == ' ')
+				scene->map.tab_map[y][x] = '1';
 			if (scene->map.tab_map[y][x] == '1')
 				mini_map_pixel(scene, x, y, 1, size);
 			if (scene->map.tab_map[y][x] == '0')

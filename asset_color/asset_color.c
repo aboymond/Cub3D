@@ -84,8 +84,8 @@ int	color_into_d_tab(char *str)
 	int *color;
 
 	i = -1;
-	color = malloc(sizeof(int) * 3);
-	trim_str = ft_split2(str, ' ');
+	color = ft_calloc(sizeof(int), 3);
+	trim_str = ft_split(str, ' ');
 	if (count_nbr_color(trim_str) == -1)
 		return (-1);
 	while (trim_str[++i])

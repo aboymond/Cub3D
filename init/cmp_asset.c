@@ -15,7 +15,6 @@ int	compt_asset(char *args, t_scene *scene)
 		if (tmp == NULL || nb_of_asset(tmp, &scene->asset) == 1)
 			break ;
 	}
-	printf("NSWE = %d, COLOR = %d\n", scene->asset.nbr_NSWE, scene->asset.nbr_color);
 	if (scene->asset.nbr_NSWE != 4 || scene->asset.nbr_color != 2)
 		return (p_error("Error:\n\tInvalid assets"));
 	malloc_asset(&scene->asset);
@@ -30,16 +29,13 @@ int	nb_of_asset(char *line, t_asset *asset)
 	i = -1;
 	while (line[++i] != '\0')
 	{
-		printf("TEST\n");
 		if (ft_strchr("NSWE", line[i]))
 		{
-			printf("NSWE asset\n");
 			asset->nbr_NSWE++;
 			return (0);
 		}
 		else if (ft_strchr("FC", line[i]))
 		{
-			printf("COLOR asset\n");
 			asset->nbr_color++;
 			return (0);
 		}
