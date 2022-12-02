@@ -4,13 +4,11 @@ int	asset_is_valid(t_asset *asset)
 {
 	if (asset_p_cardinal(asset) == -1)
 	{
-		ft_printf("p_cardianl_error: asset invalid\n");
-		return (-1);
+		return (p_error("Error:\n\tInvalid assets p_cardinal"));
 	}
 	else if (asset_color(asset) == -1)
 	{
-		ft_printf("asset_color_error: asset invalid\n");
-		return (-1);
+		return (p_error("Error:\n\tInvalid assets color"));
 	}
 	return (0);
 }
