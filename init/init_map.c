@@ -13,7 +13,6 @@ void	compt_map(char *args, t_scene *scene)
 	fd = open(args, O_RDONLY);
 	if (init_asset(args, scene) != 1)
 		return ;
-	//printf("asset = %s\n", scene->asset.asset_NSWE[0]);
 	asset_is_valid(&scene->asset);
 	while (j < scene->asset.cmpt_asset_tab)
 	{
@@ -48,12 +47,10 @@ void	init_tab_map(char *args, t_scene *scene, int haut)
 		j++;
 	}
 	scene->map.tab_map[i] = get_next_line(fd);
-	printf("scene = %s\n", scene->map.tab_map[i]);
 	i++;
 	while (i < haut)
 	{
 		scene->map.tab_map[i] = get_next_line(fd);
-		printf("scene = %s\n", scene->map.tab_map[i]);
 		i++;
 	}
 	close(fd);
