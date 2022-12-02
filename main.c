@@ -9,8 +9,10 @@ int	main(int argc, char **argv)
 	scene->mlx.mlx = mlx_init();
 	erreur_args(argc, argv);
 	init(scene);
-	// if (init_asset(argv[1], scene) == 1)
-	// 	asset_is_valid(&scene->asset);
+	if (init_asset(argv[1], scene) == 1)
+		asset_is_valid(&scene->asset);
+	else
+		return (0);
 	compt_map(argv[1], scene);
 	map_is_close(scene);
 	open_win(scene);

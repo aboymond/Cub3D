@@ -6,9 +6,9 @@ int	asset_color(t_asset *asset)
 	int		j;
 	char	*tmp;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (i <= 1)
+	while (++i <= 1)
 	{
 		tmp = ft_calloc(2, sizeof(char));
 		while (asset->asset_color[i][j] != ' ')
@@ -22,7 +22,6 @@ int	asset_color(t_asset *asset)
 			return (-1);
 		}
 		j = 0;
-		i++;
 	}
 	free(tmp);
 	if (value_color(asset) == -1)
@@ -57,9 +56,9 @@ int	value_color(t_asset *asset)
 	return (0);
 }
 
-int valid_color(char *str)
+int	valid_color(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str)
@@ -79,22 +78,19 @@ int valid_color(char *str)
 
 int	color_into_d_tab(char *str)
 {
-	char **trim_str;
-	int	i;
-	int *color;
+	char	**trim_str;
+	int		i;
 
 	i = -1;
-	color = ft_calloc(sizeof(int), 3);
 	trim_str = ft_split(str, ' ');
 	if (count_nbr_color(trim_str) == -1)
 		return (-1);
 	while (trim_str[++i])
 		trim_str[i] = ft_strtrim(trim_str[i], ",");
-	if (is_a_digit(trim_str) == - 1)
+	if (is_a_digit(trim_str) == -1)
 		return (-1);
 	if (color_rvb(trim_str) == -1)
 		return (-1);
-	free(color);
 	free_d_tab(trim_str);
 	return (0);
 }

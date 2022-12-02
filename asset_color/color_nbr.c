@@ -2,8 +2,8 @@
 
 int	is_a_digit(char **trim_str)
 {
-	int j;
-	int i;
+	int	j;
+	int	i;
 
 	j = 0;
 	i = 0;
@@ -17,9 +17,8 @@ int	is_a_digit(char **trim_str)
 				j++;
 			if (ft_isdigit(trim_str[i][j]) == 0 && j > 0)
 			{
-				printf("not a digit\n");
 				free_d_tab(trim_str);
-				return (-1);
+				return (p_error("Error:\n\tnot a integer"));
 			}
 			j++;
 		}
@@ -38,13 +37,12 @@ int	color_rvb(char **trim_str)
 	color = ft_calloc(sizeof(int), 3);
 	while (trim_str[i])
 	{
-		// printf("trim_str[i] = %s\n", trim_str[i]);
 		color[i] = ft_atoi(trim_str[i]);
 		if (color[i] < 0 || color[i] > 255)
 		{
-			// printf("rvb invalid\n");
 			free_d_tab(trim_str);
 			free(color);
+			return (p_error("Error:\n\tInvalid RVB color"));
 			return (-1);
 		}
 		i++;

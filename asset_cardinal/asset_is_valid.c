@@ -26,7 +26,7 @@ int	asset_p_cardinal(t_asset *asset)
 		tmp = ft_calloc(3, sizeof(char));
 		while (asset->asset_NSWE[i][j] != ' ')
 		{
-			tmp[j] =  asset->asset_NSWE[i][j];
+			tmp[j] = asset->asset_NSWE[i][j];
 			j++;
 		}
 		if (valid_p_cardinal_name(tmp, i) == -1)

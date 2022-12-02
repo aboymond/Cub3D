@@ -2,7 +2,7 @@
 
 int	count_nbr_color(char **tab_color)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab_color[i])
@@ -19,8 +19,8 @@ int	count_nbr_color(char **tab_color)
 
 void	free_d_tab(char **str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
