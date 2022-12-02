@@ -10,6 +10,9 @@ void	compt_map(char *args, t_scene *scene)
 	haut = 0;
 	j = 0;
 	fd = open(args, O_RDONLY);
+	if (init_asset(args, scene) != 1)
+		return ;
+	asset_is_valid(&scene->asset);
 	while (j < scene->asset.cmpt_asset_tab)
 	{
 		get_next_line(fd);
