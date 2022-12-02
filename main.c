@@ -5,10 +5,12 @@ int	main(int argc, char **argv)
 {
 	t_scene	*scene;
 
-	scene = malloc(sizeof(t_scene));
+	scene = ft_calloc(sizeof(t_scene), 1);
 	scene->mlx.mlx = mlx_init();
 	erreur_args(argc, argv);
 	init(scene);
+	if (init_asset(argv[1], scene) == 1)
+		asset_is_valid(&scene->asset);
 	compt_map(argv[1], scene);
 	map_is_close(scene);
 	open_win(scene);
