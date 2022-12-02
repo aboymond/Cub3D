@@ -46,4 +46,14 @@ void	callocmap(t_scene *scene, int haut)
 		scene->map.tab_map[i] = ft_calloc(scene->map.len_map + 1, sizeof(char));
 		i++;
 	}
+	// i = 0;
+	// while (scene->map.tab_map[i])
+	// {
+	// 	while (j < scene->map.len_map)
+	// 	{
+	// 		scene->map.tab_map[i][j] = ' ';
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 }

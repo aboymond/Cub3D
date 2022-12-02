@@ -1,6 +1,6 @@
 #include "../cub3D.h"
 
-void	compt_map(char *args, t_scene *scene)
+int	compt_map(char *args, t_scene *scene)
 {
 	char	*tmp;
 	int		fd;
@@ -32,6 +32,7 @@ void	compt_map(char *args, t_scene *scene)
 	callocmap(scene, haut);
 	printf("tablen compt map(%d)\n", ft_tablen(scene->map.tab_map));
 	init_tab_map(args, scene, haut);
+	return (0);
 }
 
 void	init_tab_map(char *args, t_scene *scene, int haut)

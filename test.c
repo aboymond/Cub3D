@@ -100,7 +100,8 @@ int	mini_map_init(t_scene *scene)
 	size = 15;
 	while (y < ft_tablen(scene->map.tab_map))
 	{
-		while (x < scene->map.len_map || scene->map.tab_map[y][x])
+		printf("maplen = %d\n", scene->map.len_map);
+		while (x < scene->map.len_map - 1/* || scene->map.tab_map[y][x]*/)
 		{
 			if (scene->map.tab_map[y][x] == ' ')
 				scene->map.tab_map[y][x] = '1';
