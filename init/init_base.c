@@ -10,6 +10,7 @@ void	init(t_scene *scene)
 void	init_struct_map(t_scene *scene)
 {
 	scene->map.tab_map = NULL;
+	scene->map.len_map = 0;
 }
 
 void	init_player(t_scene *scene)
@@ -31,5 +32,18 @@ void	init_asset_var(t_scene *scene)
 
 void	callocmap(t_scene *scene, int haut)
 {
-	scene->map.tab_map = ft_calloc(haut, sizeof(char));
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	
+	printf("haut %d\n", haut);
+
+	scene->map.tab_map = ft_calloc(haut, sizeof(char *));
+	while (i < haut - 1)
+	{
+		scene->map.tab_map[i] = ft_calloc(scene->map.len_map + 1, sizeof(char));
+		i++;
+	}
 }
