@@ -51,12 +51,14 @@ int	value_color(t_asset *asset)
 
 	c_floor = ft_strdup(asset->asset_color[0]);
 	c_ceiling = ft_strdup(asset->asset_color[1]);
-	if (valid_color(c_floor) == -1 || valid_color(c_ceiling) == -1)
+	if (valid_color(c_floor, asset) == -1 || valid_color(c_ceiling, asset) == -1)
 		return (-1);
+	convert_tab_char_to_int(c_floor, c_ceiling, asset);
+	
 	return (0);
 }
 
-int	valid_color(char *str)
+int	valid_color(char *str, t_asset *asset)
 {
 	int	i;
 
@@ -67,21 +69,22 @@ int	valid_color(char *str)
 			break ;
 		i++;
 	}
-	if (color_into_d_tab(&str[i]) == -1)
+	if (color_into_d_tab(&str[i], asset) == -1)
 	{
 		free(str);
 		return (-1);
 	}
-	free(str);
+	//free(str);
 	return (0);
 }
 
-int	color_into_d_tab(char *str)
+int	color_into_d_tab(char *str, t_asset *asset)
 {
 	char	**trim_str;
 	int		i;
 
 	i = -1;
+	(void)asset;
 	trim_str = ft_split(str, ' ');
 	if (count_nbr_color(trim_str) == -1)
 		return (-1);

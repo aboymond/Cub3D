@@ -50,6 +50,10 @@ typedef struct s_player
 typedef struct s_asset
 {
 	char		**asset_NSWE;
+	char		**tab_path;
+	char		**tab_color;
+	int			*floor_color;
+	int			*ceiling_color;
 	char		**asset_color;
 	int			cmpt_asset;
 	int			cmpt_asset_tab;
@@ -142,11 +146,17 @@ int		name_is_valid(char *str, int i);
 int		asset_is_valid(t_asset *asset);
 int		valid_color_name(char *str, int i);
 int		value_color(t_asset *asset);
-int 	valid_color(char *str);
-int		color_into_d_tab(char *str);
+int 	valid_color(char *str, t_asset *asset);
+int		color_into_d_tab(char *str, t_asset *asset);
 int		is_a_digit(char **trim_str);
 int		color_rvb(char **trim_str);
 int 	count_nbr_color(char **tab_color);
+int		path_not_valid(t_asset *asset);
+void	delete_p_cardinal(char **tab_path, t_asset *asset);
+int		two_same_path(char **path);
+void	convert_tab_char_to_int(char *floor, char *ceiling, t_asset *asset);
+void	create_tab_integer_ceiling(char *str, t_asset *asset);
+void	create_tab_integer_floor(char *str, t_asset *asset);
 
 
 

@@ -28,6 +28,6 @@ int	cpy_map_to_tab(t_scene *scene, char *line, int i)
 		j++;
 	}
 	scene->map.tab_map[i][j - 1] = '\0';
-	printf("map = %s\n", scene->map.tab_map[i]);
+	// printf("map = %s\n", scene->map.tab_map[i]);
 	return (0);
 }
