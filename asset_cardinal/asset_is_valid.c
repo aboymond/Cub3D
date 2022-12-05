@@ -2,7 +2,7 @@
 
 int	asset_is_valid(t_asset *asset)
 {
-	if (asset_p_cardinal(asset) == -1)
+	if (asset_p_cardinal(asset) == -1 || path_not_valid(asset) == -1)
 	{
 		return (p_error("Error:\n\tInvalid assets p_cardinal"));
 	}

@@ -27,7 +27,7 @@ int	compt_map(char *args, t_scene *scene)
 	}
 	close(fd);
 	callocmap(scene, haut);
-	printf("tablen compt map(%d)\n", ft_tablen(scene->map.tab_map));
+	// printf("tablen compt map(%d)\n", ft_tablen(scene->map.tab_map));
 	init_tab_map(args, scene, haut);
 	return (0);
 }
