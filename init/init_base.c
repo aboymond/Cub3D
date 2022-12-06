@@ -33,27 +33,14 @@ void	init_asset_var(t_scene *scene)
 void	callocmap(t_scene *scene, int haut)
 {
 	int	i;
-	int j;
 
 	i = 0;
-	j = 0;
-	
-	printf("haut %d\n", haut);
-
+	if (haut <= 2)
+		p_error("Error:\n\tMap non conforme");
 	scene->map.tab_map = ft_calloc(haut, sizeof(char *));
 	while (i < haut - 1)
 	{
 		scene->map.tab_map[i] = ft_calloc(scene->map.len_map + 1, sizeof(char));
 		i++;
 	}
-	// i = 0;
-	// while (scene->map.tab_map[i])
-	// {
-	// 	while (j < scene->map.len_map)
-	// 	{
-	// 		scene->map.tab_map[i][j] = ' ';
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
 }

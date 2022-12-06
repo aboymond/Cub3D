@@ -45,6 +45,7 @@ typedef struct s_player
 {
 	int		pos_x;
 	int		pos_y;
+	char	cardi;
 }		t_player;
 
 typedef struct s_asset
@@ -127,7 +128,7 @@ int		malloc_asset(t_asset *asset);
 int		compt_map(char *args, t_scene *scene);
 void	init_tab_map(char *args, t_scene *scene, int haut);
 int		map_is_close(t_scene *scene);
-int		check_wall(t_scene *scene, int i, int j);
+int		check_wall(char **tab, int i, int j);
 
 ////////// ERROR //////////
 int		erreur_args(int argc, char **argv);
@@ -162,6 +163,7 @@ void	free_d_tab(char **str);
 ///////// UTILS ///////////
 int		comp_size_len(t_scene *scene, char *line);
 int		cpy_map_to_tab(t_scene *scene, char *line, int i);
+int		utils_c_w(char c, int car);
 
 ///////// TEST ///////////
 int		open_win(t_scene *scene);
