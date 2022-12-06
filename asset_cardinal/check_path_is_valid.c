@@ -12,6 +12,7 @@ int	path_not_valid(t_asset *asset)
 	while (asset->asset_NSWE[i])
 	{
 		tab_path[i] = ft_strdup(asset->asset_NSWE[i]);
+		printf("tab_path = %p\n", tab_path);
 		free(asset->asset_NSWE[i]);
 		i++;
 	}
@@ -27,6 +28,7 @@ void	delete_p_cardinal(char **tab_path, t_asset *asset)
 
 	i = 0;
 	asset->tab_path = ft_calloc(asset->nbr_NSWE + 1, sizeof(char *));
+	printf("asset->tab_path = %p\n", asset->tab_path);
 	while (tab_path[i])
 	{
 		asset->tab_path[i] = ft_substr(tab_path[i], 3, ft_strlen(tab_path[i]));

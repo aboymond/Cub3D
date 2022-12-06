@@ -4,7 +4,7 @@ NAME			=		cub3D
 
 #***** Sources / Objs *****#
 
-SRC				=		main.c test.c\
+SRC				=		main.c test.c utils_free.c\
 						$(addprefix ./init/, init_base.c init_map.c init_asset.c cmp_asset.c utils.c)\
 						$(addprefix ./error/, error_args.c) \
 						$(addprefix ./asset_cardinal/, asset_is_valid.c check_path_is_valid.c) \

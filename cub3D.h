@@ -167,6 +167,7 @@ void	create_tab_integer_floor(char *str, t_asset *asset);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
+void    free_tab(t_scene *scene);
 void	free_d_tab(char **str);
 
 ///////// UTILS ///////////

@@ -37,6 +37,7 @@ int	asset_p_cardinal(t_asset *asset)
 		j = 0;
 		i++;
 	}
+	free(tmp);
 	return (0);
 }
 
