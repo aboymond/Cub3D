@@ -6,7 +6,6 @@ int	init_asset(char *args, t_scene *scene)
 	int		fd;
 
 	fd = open(args, O_RDONLY);
-	// printf("fd = %d\n", fd);
 	compt_asset(args, scene);
 	tmp = get_next_line(fd);
 	if (tmp == NULL || check_asset(scene, tmp) == 1)
