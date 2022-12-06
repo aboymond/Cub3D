@@ -6,9 +6,9 @@ int	asset_color(t_asset *asset)
 	int		j;
 	char	*tmp;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (i <= 1)
+	while (++i <= 1)
 	{
 		tmp = ft_calloc(2, sizeof(char));
 		while (asset->asset_color[i][j] != ' ')
@@ -22,7 +22,6 @@ int	asset_color(t_asset *asset)
 			return (-1);
 		}
 		j = 0;
-		i++;
 	}
 	free(tmp);
 	if (value_color(asset) == -1)
@@ -51,25 +50,30 @@ int	value_color(t_asset *asset)
 	char	*c_ceiling;
 
 	c_floor = ft_strdup(asset->asset_color[0]);
+	printf("c_floor = %p\n", c_floor);
 	c_ceiling = ft_strdup(asset->asset_color[1]);
-	if (valid_color(c_floor) == -1 || valid_color(c_ceiling) == -1)
+	printf("c_floor = %p\n", c_ceiling);
+	if (valid_color(c_floor, asset) == -1 || valid_color(c_ceiling, asset) == -1)
 		return (-1);
+	convert_tab_char_to_int(c_floor, c_ceiling, asset);
+	
 	return (0);
 }
 
-int valid_color(char *str)
+int	valid_color(char *str, t_asset *asset)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (str)
+	while (str[i])
 	{
 		if ((str[i] >= 48 && str[i] <= 57) || str[i] == '-')
 			break ;
 		i++;
 	}
-	if (color_into_d_tab(&str[i]) == -1)
+	if (color_into_d_tab(&str[i], asset) == -1)
 	{
+		printf("test = %p\n", &str);
 		free(str);
 		return (-1);
 	}
@@ -77,24 +81,23 @@ int valid_color(char *str)
 	return (0);
 }
 
-int	color_into_d_tab(char *str)
+int	color_into_d_tab(char *str, t_asset *asset)
 {
-	char **trim_str;
-	int	i;
-	int *color;
+	printf("str 1 = %p\n", str);
+	char	**trim_str;
+	int		i;
+	(void)asset;
 
 	i = -1;
-	color = ft_calloc(sizeof(int), 3);
 	trim_str = ft_split(str, ' ');
 	if (count_nbr_color(trim_str) == -1)
 		return (-1);
 	while (trim_str[++i])
 		trim_str[i] = ft_strtrim(trim_str[i], ",");
-	if (is_a_digit(trim_str) == - 1)
+	if (is_a_digit(trim_str) == -1)
 		return (-1);
 	if (color_rvb(trim_str) == -1)
 		return (-1);
-	free(color);
 	free_d_tab(trim_str);
 	return (0);
 }
