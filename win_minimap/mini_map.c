@@ -1,11 +1,17 @@
-#include "cub3D.h"
+#include "../cub3D.h"
+
+int	mlx_open_win(t_scene *scene)
+{
+	scene->mlx.win = mlx_new_window(scene->mlx.mlx, WIN_X, WIN_Y, "test");
+	scene->img.img = mlx_new_image(scene->mlx.mlx, WIN_X, WIN_Y);
+	scene->img.addr = mlx_get_data_addr(scene->img.img, &scene->img.bits_per_pixel, &scene->img.line_length, &scene->img.endian);
+	return (0);
+}
 
 int	open_win(t_scene *scene)
 {
-	scene->mlx.win = mlx_new_window(scene->mlx.mlx, 1920, 1080, "test");
-	scene->img.img = mlx_new_image(scene->mlx.mlx, 1920, 1080);
-	scene->img.addr = mlx_get_data_addr(scene->img.img, &scene->img.bits_per_pixel, &scene->img.line_length, &scene->img.endian);
 	mini_map_init(scene);
+	print_player(scene, scene->player.pos.x, scene->player.pos.y);
 	mlx_put_image_to_window(scene->mlx.mlx, scene->mlx.win, scene->img.img, 0, 0);
 	return (0);
 }
@@ -14,6 +20,8 @@ int	mxl_pixel_put(t_scene *scene, int x, int y, int color)
 {
 	char	*dst ;
 
+	if ((x < 0 || y < 0) || (x > WIN_X || y > WIN_Y))
+		return(p_error("Error :\n\tMinimap"));
 	dst = scene->img.addr + (y * scene->img.line_length + x * (scene->img.bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 	return (0);
@@ -85,33 +93,6 @@ int	mini_map_pixel_border(t_scene *scene, int x, int y, int size)
 	{
 		mxl_pixel_put(scene, (x * size) + size, j, RED);
 		j++;
-	}
-	return (0);
-}
-
-int	mini_map_init(t_scene *scene)
-{
-	int	x;
-	int	y;
-	int	size;
-
-	x = 0;
-	y = 0;
-	size = 15;
-	while (y < ft_tablen(scene->map.tab_map))
-	{
-		while (x < scene->map.len_map - 1/* || scene->map.tab_map[y][x]*/)
-		{
-			if (scene->map.tab_map[y][x] == ' ')
-				scene->map.tab_map[y][x] = '1';
-			if (scene->map.tab_map[y][x] == '1')
-				mini_map_pixel(scene, x, y, 1, size);
-			if (scene->map.tab_map[y][x] == '0')
-				mini_map_pixel(scene, x, y, 0, size);
-			x++;
-		}
-		x = 0;
-		y++;
 	}
 	return (0);
 }

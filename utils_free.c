@@ -12,9 +12,9 @@ void    free_tab(t_scene *scene)
     }
     free(scene->asset.tab_path);
     i = 0;
-    while (scene->asset.ceiling_color[i])
-    {
-        free(scene->asset.ceiling_color);
-        i++;
-    }
+    // while (scene->asset.ceiling_color[i])
+    // {
+    //     free(scene->asset.ceiling_color);
+    //     i++;
+    // }
 }

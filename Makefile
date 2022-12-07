@@ -4,11 +4,13 @@ NAME			=		cub3D
 
 #***** Sources / Objs *****#
 
-SRC				=		main.c test.c utils_free.c\
+SRC				=		main.c utils_free.c test_move_p.c\
 						$(addprefix ./init/, init_base.c init_map.c init_asset.c cmp_asset.c utils.c)\
 						$(addprefix ./error/, error_args.c) \
 						$(addprefix ./asset_cardinal/, asset_is_valid.c check_path_is_valid.c) \
-						$(addprefix ./asset_color/, asset_color.c color_nbr.c asset_color_utils.c)
+						$(addprefix ./asset_color/, asset_color.c color_nbr.c asset_color_utils.c)\
+						$(addprefix ./win_minimap/, init_minimap.c mini_map.c )\
+						$(addprefix ./player/, player.c)
 
 OBJS			=		$(SRC:.c=.o)
 

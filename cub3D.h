@@ -9,6 +9,8 @@
 # define GRE 0x00808080
 # define BLU 0x00002EFF
 # define WHI 0x00FFFFFF
+# define WIN_X 1920
+# define WIN_Y 1080
 
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
@@ -41,11 +43,19 @@ typedef struct s_mlx
 	void	*win;
 
 }		t_mlx;
+
+typedef struct s_vec2
+{
+	float	x;
+	float	y;
+} t_vec2;
+
 typedef struct s_player
 {
-	int		pos_x;
-	int		pos_y;
-	char	cardi;
+	t_vec2		pos; 
+	t_vec2		dir;
+	t_vec2		old;
+	char		cardi;
 }		t_player;
 
 typedef struct s_asset
@@ -67,6 +77,7 @@ typedef struct s_map
 {
 	char		**tab_map;
 	int			len_map;
+	int			map_size;
 	int			x;
 	int			y;
 }		t_map;
@@ -159,12 +170,17 @@ void	convert_tab_char_to_int(char *floor, char *ceiling, t_asset *asset);
 void	create_tab_integer_ceiling(char *str, t_asset *asset);
 void	create_tab_integer_floor(char *str, t_asset *asset);
 
+////////// PLAYER /////////
+int		init_pos_player(t_scene *scene, int y, int x, int size);
+int		print_player(t_scene *scene, int x, int y);
 
-
-
-
-
-
+////////// WIN_MINIMAP ///
+int		mini_map_init(t_scene *scene);
+int		open_win(t_scene *scene);
+int		mxl_pixel_put(t_scene *scene, int x, int y, int color);
+int		mini_map_pixel(t_scene *scene, int x, int y, int floor, int size);
+int		mini_map_pixel_border(t_scene *scene, int x, int y, int size);
+int		mlx_open_win(t_scene *scene);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
@@ -177,10 +193,7 @@ int		cpy_map_to_tab(t_scene *scene, char *line, int i);
 int		utils_c_w(char c, int car);
 
 ///////// TEST ///////////
-int		open_win(t_scene *scene);
-int		mxl_pixel_put(t_scene *scene, int x, int y, int color);
-int		mini_map_pixel(t_scene *scene, int x, int y, int floor, int size);
-int		mini_map_init(t_scene *scene);
-int		mini_map_pixel_border(t_scene *scene, int x, int y, int size);
+int		key_move(int keycode, t_scene *scene);
+int		del_old_print_player(t_scene *scene, int x, int y);
 
 #endif

@@ -78,8 +78,8 @@ int	map_is_close(t_scene *scene)
 			{
 				scene->player.cardi = scene->map.tab_map[i][j];
 				comp++;
-				scene->player.pos_x = j;
-				scene->player.pos_y = i;
+				scene->player.pos.x = j;
+				scene->player.pos.y = i;
 				if (comp > 1)
 					return (p_error("Error :\n\tTo many player"));
 			}
