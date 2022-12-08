@@ -7,6 +7,7 @@ int	init_pos_player(t_scene *scene, int y, int x, int size)
 		scene->player.dir = (t_vec2){0, -1};
 		scene->player.pos = (t_vec2){(x + 0.5) * size, (y + 0.5)* size};
 		print_player(scene,scene->player.pos.x, scene->player.pos.y);
+
 	}
 	else if (scene->map.tab_map[y][x] == 'S')
 	{
@@ -40,19 +41,12 @@ int	print_player(t_scene *scene, int x, int y)
 	mxl_pixel_put(scene, x + 1, y - 1, WHI);
 	mxl_pixel_put(scene, x + 1, y + 1, WHI);
 	mxl_pixel_put(scene, x - 1, y - 1, WHI);
+
 	return (0);
 }
 
-int	del_old_print_player(t_scene *scene, int x, int y)
-{
-	mxl_pixel_put(scene, x, y, GRE);
-	mxl_pixel_put(scene, x - 1, y, GRE);
-	mxl_pixel_put(scene, x, y - 1, GRE);
-	mxl_pixel_put(scene, x + 1, y, GRE);
-	mxl_pixel_put(scene, x, y + 1, GRE);
-	mxl_pixel_put(scene, x - 1, y + 1, GRE);
-	mxl_pixel_put(scene, x + 1, y - 1, GRE);
-	mxl_pixel_put(scene, x + 1, y + 1, GRE);
-	mxl_pixel_put(scene, x - 1, y - 1, GRE);
-	return (0);
-}
+// int	print_dir(t_scene *scene, int x, int y)
+// {
+	
+// 	return (0);
+// }

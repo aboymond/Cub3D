@@ -11,6 +11,7 @@
 # define WHI 0x00FFFFFF
 # define WIN_X 1920
 # define WIN_Y 1080
+# define SPD 1
 
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
@@ -54,7 +55,7 @@ typedef struct s_player
 {
 	t_vec2		pos; 
 	t_vec2		dir;
-	t_vec2		old;
+	t_vec2		old_dir;
 	char		cardi;
 }		t_player;
 
@@ -173,6 +174,13 @@ void	create_tab_integer_floor(char *str, t_asset *asset);
 ////////// PLAYER /////////
 int		init_pos_player(t_scene *scene, int y, int x, int size);
 int		print_player(t_scene *scene, int x, int y);
+int		key_move(int keycode, t_scene *scene);
+//int		del_old_print_player(t_scene *scene, int x, int y);
+int		key_right(t_scene *scene);
+int		key_left(t_scene *scene);
+int		key_down(t_scene *scene, int x);
+int		key_up(t_scene *scene, int x, int y);
+//int		print_dir(t_scene *scene, int x, int y);
 
 ////////// WIN_MINIMAP ///
 int		mini_map_init(t_scene *scene);
@@ -193,7 +201,5 @@ int		cpy_map_to_tab(t_scene *scene, char *line, int i);
 int		utils_c_w(char c, int car);
 
 ///////// TEST ///////////
-int		key_move(int keycode, t_scene *scene);
-int		del_old_print_player(t_scene *scene, int x, int y);
 
 #endif

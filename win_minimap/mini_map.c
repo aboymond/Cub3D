@@ -12,6 +12,7 @@ int	open_win(t_scene *scene)
 {
 	mini_map_init(scene);
 	print_player(scene, scene->player.pos.x, scene->player.pos.y);
+	mxl_pixel_put(scene, (scene->player.dir.x * 4) + scene->player.pos.x, (scene->player.dir.y * 4) + scene->player.pos.y, RED);
 	mlx_put_image_to_window(scene->mlx.mlx, scene->mlx.win, scene->img.img, 0, 0);
 	return (0);
 }
@@ -46,7 +47,7 @@ int	mini_map_pixel(t_scene *scene, int x, int y, int floor, int size)
 			i = (x * size);
 			j++;
 		}
-		mini_map_pixel_border(scene, x, y, size);
+		//mini_map_pixel_border(scene, x, y, size);
 	}
 	else
 	{
@@ -75,24 +76,24 @@ int	mini_map_pixel_border(t_scene *scene, int x, int y, int size)
 	while (i < ((x * size) + size))
 	{
 		mxl_pixel_put(scene, i, y * size, RED);
+		mxl_pixel_put(scene, i, (y * size) + size, YEL);
 		i++;
 	}
 	while (j < ((y * size) + size))
 	{
-		mxl_pixel_put(scene, x * size, j, RED);
+		mxl_pixel_put(scene, x * size, j, BLU);
+		mxl_pixel_put(scene, (x * size) + size, j, GREEN);
 		j++;
 	}
-	i = (x * size);
-	j = (y * size);
-	while (i < ((x * size) + size))
-	{
-		mxl_pixel_put(scene, i, (y * size) + size, RED);
-		i++;
-	}
-	while (j < ((y * size) + size))
-	{
-		mxl_pixel_put(scene, (x * size) + size, j, RED);
-		j++;
-	}
+	// i = (x * size);
+	// j = (y * size);
+	// while (i < ((x * size) + size))
+	// {
+	// 	i++;
+	// }
+	// while (j < ((y * size) + size))
+	// {
+	// 	j++;
+	// }
 	return (0);
 }
