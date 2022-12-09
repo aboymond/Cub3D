@@ -38,26 +38,14 @@ int	key_left(t_scene *scene)
 
 int	key_down(t_scene *scene, int x)
 {
-
-	if (scene->map.tab_map[((int)scene->player.pos.y) / scene->map.map_size][x] == '1')
-		return(0);
-	else
-	{
-		scene->player.pos.x -= scene->player.dir.x * SPD;
-		scene->player.pos.y -= scene->player.dir.y * SPD;
-	}
+	scene->player.pos.x -= scene->player.dir.x * SPD;
+	scene->player.pos.y -= scene->player.dir.y * SPD;
 	return (0);
 }
 
 int	key_up(t_scene *scene, int x, int y)
 {
-
-	if (scene->map.tab_map[((int)scene->player.pos.y) / scene->map.map_size][x] == '1' || scene->map.tab_map[y][(int)scene->player.pos.x / scene->map.map_size] == '1')
-		return(0);
-	else
-	{
-		scene->player.pos.x += scene->player.dir.x * SPD;
-		scene->player.pos.y += scene->player.dir.y * SPD;
-	}
+	scene->player.pos.x += scene->player.dir.x * SPD;
+	scene->player.pos.y += scene->player.dir.y * SPD;
 	return (0);
 }

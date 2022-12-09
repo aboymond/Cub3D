@@ -11,7 +11,7 @@
 # define WHI 0x00FFFFFF
 # define WIN_X 1920
 # define WIN_Y 1080
-# define SPD 1
+# define SPD 0.5
 
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
