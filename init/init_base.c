@@ -15,8 +15,8 @@ void	init_struct_map(t_scene *scene)
 
 void	init_player(t_scene *scene)
 {
-	scene->player.pos_x = 0;
-	scene->player.pos_y = 0;
+	scene->player.pos.x = 0;
+	scene->player.pos.y = 0;
 }
 
 void	init_asset_var(t_scene *scene)
