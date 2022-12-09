@@ -13,7 +13,10 @@ int	compt_asset(char *args, t_scene *scene)
 		free (tmp);
 		tmp = get_next_line(fd);
 		if (tmp == NULL || nb_of_asset(tmp, &scene->asset) == 1)
+		{
+			free(tmp);
 			break ;
+		}
 	}
 	if (scene->asset.nbr_NSWE != 4 || scene->asset.nbr_color != 2)
 		return (p_error("Error:\n\tInvalid assets"));

@@ -44,10 +44,10 @@ void	create_tab_integer_floor(char *str, t_asset *asset)
 	char	*fdp;
 	char	*tmp_trim;
 	char	**tmp;
+
 	i = -1;
 	asset->floor_color = malloc(sizeof(int) * 3);
 	fdp = ft_substr(str, 2, ft_strlen(str));
-	//free(str);
 	tmp = ft_split(fdp, ' ');
 	free(fdp);
 	while (tmp[++i])
@@ -55,6 +55,7 @@ void	create_tab_integer_floor(char *str, t_asset *asset)
 		tmp_trim = ft_strtrim(tmp[i], ",");
 		free(tmp[i]);
 		asset->floor_color[i] = ft_atoi(tmp_trim);
+		free(tmp_trim);
 	}
 	free(tmp);
 }
@@ -65,10 +66,10 @@ void	create_tab_integer_ceiling(char *str, t_asset *asset)
 	char	*fdp;
 	char	*tmp_trim;
 	char	**tmp;
+
 	i = -1;
 	asset->ceiling_color = malloc(sizeof(int) * 3);
 	fdp = ft_substr(str, 2, ft_strlen(str));
-	//free(str);
 	tmp = ft_split(fdp, ' ');
 	free(fdp);
 	while (tmp[++i])
@@ -76,6 +77,7 @@ void	create_tab_integer_ceiling(char *str, t_asset *asset)
 		tmp_trim = ft_strtrim(tmp[i], ",");
 		free(tmp[i]);
 		asset->ceiling_color[i] = ft_atoi(tmp_trim);
+		free(tmp_trim);
 	}
 	free(tmp);
 }

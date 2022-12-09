@@ -12,8 +12,9 @@ int	compt_map(char *args, t_scene *scene)
 	fd = open(args, O_RDONLY);
 	while (j < scene->asset.cmpt_asset_tab)
 	{
-		get_next_line(fd);
+		tmp = get_next_line(fd);
 		j++;
+		free (tmp);
 	}
 	tmp = get_next_line(fd);
 	comp_size_len(scene, tmp);
