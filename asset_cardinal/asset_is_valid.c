@@ -30,14 +30,10 @@ int	asset_p_cardinal(t_asset *asset)
 			j++;
 		}
 		if (valid_p_cardinal_name(tmp, i) == -1)
-		{
-			free(tmp);
 			return (-1);
-		}
 		j = 0;
 		i++;
 	}
-	free(tmp);
 	return (0);
 }
 
@@ -46,22 +42,35 @@ int	valid_p_cardinal_name(char *str, int i)
 	if (i == 0)
 	{
 		if (ft_strcmp(str, "NO") != 0)
+		{
+			free(str);
 			return (-1);
+		}
 	}
 	if (i == 1)
 	{
 		if (ft_strcmp(str, "SD") != 0)
+		{
+			free(str);
 			return (-1);
+		}
 	}
 	if (i == 2)
 	{
 		if (ft_strcmp(str, "WE") != 0)
+		{
+			free(str);
 			return (-1);
+		}
 	}
 	if (i == 3)
 	{
 		if (ft_strcmp(str, "EA") != 0)
+		{
+			free(str);
 			return (-1);
+		}
 	}
+	free(str);
 	return (0);
 }

@@ -147,8 +147,8 @@ int		name_is_valid(char *str, int i);
 int		asset_is_valid(t_asset *asset);
 int		valid_color_name(char *str, int i);
 int		value_color(t_asset *asset);
-int 	valid_color(char *str, t_asset *asset);
-int		color_into_d_tab(char *str, t_asset *asset);
+int 	valid_color(char *str);
+int		color_into_d_tab(char *str);
 int		is_a_digit(char **trim_str);
 int		color_rvb(char **trim_str);
 int 	count_nbr_color(char **tab_color);
@@ -170,6 +170,7 @@ void	create_tab_integer_floor(char *str, t_asset *asset);
 int		free_main(t_scene *scene);
 void    free_tab(t_scene *scene);
 void	free_d_tab(char **str);
+void	tab_free(char *str);
 
 ///////// UTILS ///////////
 int		comp_size_len(t_scene *scene, char *line);
