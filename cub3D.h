@@ -11,7 +11,8 @@
 # define WHI 0x00FFFFFF
 # define WIN_X 1920
 # define WIN_Y 1080
-# define SPD 0.5
+# define SPD 1
+# define SPDR 0.1
 
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
@@ -176,10 +177,10 @@ int		init_pos_player(t_scene *scene, int y, int x, int size);
 int		print_player(t_scene *scene, int x, int y);
 int		key_move(int keycode, t_scene *scene);
 //int		del_old_print_player(t_scene *scene, int x, int y);
-int		key_right(t_scene *scene);
-int		key_left(t_scene *scene);
-int		key_down(t_scene *scene, int x);
-int		key_up(t_scene *scene, int x, int y);
+int		key_right(t_player *player);
+int		key_left(t_player *player);
+int		key_down(t_player *player, int x);
+int		key_up(t_player *player, int x, int y);
 //int		print_dir(t_scene *scene, int x, int y);
 
 ////////// WIN_MINIMAP ///

@@ -10,42 +10,45 @@ int	key_move(int keycode, t_scene *scene)
 	if (keycode == ESC)
 		exit(0);
 	if (keycode == RIGHT_KEY)
-		key_right(scene);
+		key_right(&scene->player);
 	if (keycode == LEFT_KEY)
-		key_left(scene);
+		key_left(&scene->player);
 	if (keycode == UP_KEY)
-		key_up(scene, x, y);
+		key_up(&scene->player, x, y);
 	if (keycode == DOWN_KEY)
-		key_down(scene, x);
+		key_down(&scene->player, x);
 	return (0);
 }
 
-int	key_right(t_scene *scene)
+int	key_right(t_player *player)
 {
-	scene->player.old_dir.x = scene->player.dir.x;
-	scene->player.dir.x = scene->player.dir.x * cos(SPD) - scene->player.dir.y * sin(SPD);
-	scene->player.dir.y = scene->player.old_dir.x * sin(SPD) + scene->player.dir.y * cos(SPD);
+	player->old_dir.x = player->dir.x;
+	player->dir.x = player->dir.x * cos(SPDR) - player->dir.y * sin(SPDR);
+	player->dir.y = player->old_dir.x * sin(SPDR) + player->dir.y * cos(SPDR);
 	return (0);
 }
 
-int	key_left(t_scene *scene)
+int	key_left(t_player *player)
 {
-	scene->player.old_dir.x = scene->player.dir.x;
-	scene->player.dir.x = scene->player.dir.x * cos(-SPD) - scene->player.dir.y * sin(-SPD);
-	scene->player.dir.y = scene->player.old_dir.x * sin(-SPD) + scene->player.dir.y * cos(-SPD);
+	player->old_dir.x = player->dir.x;
+	player->dir.x = player->dir.x * cos(-SPDR) - player->dir.y * sin(-SPDR);
+	player->dir.y = player->old_dir.x * sin(-SPDR) + player->dir.y * cos(-SPDR);
 	return (0);
 }
 
-int	key_down(t_scene *scene, int x)
+int	key_down(t_player *player, int x)
 {
-	scene->player.pos.x -= scene->player.dir.x * SPD;
-	scene->player.pos.y -= scene->player.dir.y * SPD;
+	(void)x;
+	player->pos.x -= player->dir.x * SPD;
+	player->pos.y -= player->dir.y * SPD;
 	return (0);
 }
 
-int	key_up(t_scene *scene, int x, int y)
+int	key_up(t_player *player, int x, int y)
 {
-	scene->player.pos.x += scene->player.dir.x * SPD;
-	scene->player.pos.y += scene->player.dir.y * SPD;
+	(void)x;
+	(void)y;
+	player->pos.x += player->dir.x * SPD;
+	player->pos.y += player->dir.y * SPD;
 	return (0);
 }
