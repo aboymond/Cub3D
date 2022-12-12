@@ -7,8 +7,12 @@ int	key_move(int keycode, t_scene *scene)
 
 	y = (int)scene->player.pos.y / scene->map.map_size;
 	x = (int)scene->player.pos.x / scene->map.map_size;
+	printf("key = %d\n", keycode);
 	if (keycode == ESC)
-		exit(0);
+	{
+		//free_main(scene);
+
+	}
 	if (keycode == RIGHT_KEY)
 		key_right(&scene->player);
 	if (keycode == LEFT_KEY)

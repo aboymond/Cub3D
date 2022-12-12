@@ -18,10 +18,10 @@ int	main(int argc, char **argv)
 	//open_win(scene);
 	mlx_open_win(scene);
 	mlx_loop_hook(scene->mlx.mlx, open_win, scene);
-	mlx_hook(scene->mlx.win, 2, 1L << 0, key_move, scene);
+	mlx_hook(scene->mlx.win, 02, 1L << 0, key_move, scene);
 	mlx_loop(scene->mlx.mlx);
 	free_main(scene);
-	free_tab(scene);
+	// free_tab(scene);
 
 	return (0);
 }
@@ -39,5 +39,5 @@ int	free_main(t_scene *scene)
 	free(scene->map.tab_map);
 	free(scene->mlx.mlx);
 	free(scene);
-	return (0);
+	exit (0);
 }

@@ -28,6 +28,7 @@
 
 # else
 #  include "./src_mlx/mlx-linux/mlx.h"
+#  define ESC					65307
 #  define LEFT_KEY				65361
 #  define RIGHT_KEY				65363
 #  define UP_KEY				65362
@@ -36,7 +37,6 @@
 #  define W_KEY					119
 #  define S_KEY					115
 #  define D_KEY					100
-#  define ESC					65307
 # endif
 
 typedef struct s_mlx
@@ -57,6 +57,7 @@ typedef struct s_player
 	t_vec2		pos; 
 	t_vec2		dir;
 	t_vec2		old_dir;
+	t_vec2		delta;
 	char		cardi;
 }		t_player;
 
@@ -202,5 +203,6 @@ int		cpy_map_to_tab(t_scene *scene, char *line, int i);
 int		utils_c_w(char c, int car);
 
 ///////// TEST ///////////
+int		init_ray(t_scene *scene);
 
 #endif
