@@ -10,7 +10,7 @@ int	key_move(int keycode, t_scene *scene)
 	printf("key = %d\n", keycode);
 	if (keycode == ESC)
 	{
-		//free_main(scene);
+		free_main(scene);
 
 	}
 	if (keycode == RIGHT_KEY)
@@ -18,9 +18,9 @@ int	key_move(int keycode, t_scene *scene)
 	if (keycode == LEFT_KEY)
 		key_left(&scene->player);
 	if (keycode == UP_KEY)
-		key_up(&scene->player, x, y);
+		key_up(scene, &scene->player, x, y);
 	if (keycode == DOWN_KEY)
-		key_down(&scene->player, x);
+		key_down(scene, &scene->player, x);
 	return (0);
 }
 
@@ -40,19 +40,28 @@ int	key_left(t_player *player)
 	return (0);
 }
 
-int	key_down(t_player *player, int x)
+int	key_down(t_scene *scene, t_player *player, int x)
 {
 	(void)x;
-	player->pos.x -= player->dir.x * SPD;
-	player->pos.y -= player->dir.y * SPD;
+	(void)scene;
+	//if (scene->map.tab_map[(int)(player->pos.y - (player->dir.y * SPD * 2))][(int)player->pos.x] == '0')
+		player->pos.y -= player->dir.y * SPD;
+	//if (scene->map.tab_map[(int)player->pos.y][(int)(player->pos.x - (player->dir.x * SPD * 2))] == '0')
+		player->pos.x -= player->dir.x * SPD;
 	return (0);
 }
 
-int	key_up(t_player *player, int x, int y)
+int	key_up(t_scene *scene, t_player *player, int x, int y)
 {
 	(void)x;
 	(void)y;
-	player->pos.x += player->dir.x * SPD;
-	player->pos.y += player->dir.y * SPD;
+	(void)scene;
+	//if (scene->map.tab_map[(int)(player->pos.y + (player->dir.y * SPD * 2))][(int)player->pos.x] == '0')
+		player->pos.y += player->dir.y * SPD;
+	//if (scene->map.tab_map[(int)player->pos.y][(int)(player->pos.x + (player->dir.x * SPD * 2))] == '0')
+		player->pos.x += player->dir.x * SPD;
 	return (0);
 }
+
+		// if (recup->map[(int)(recup->ray.posx + (recup->ray.dirx * recup->
+		// 				ray.movespeed * 2))][(int)recup->ray.posy] == '0')

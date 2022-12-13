@@ -13,6 +13,7 @@
 # define WIN_Y 1080
 # define SPD 1
 # define SPDR 0.1
+# define FOV 0.66
 
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
@@ -54,10 +55,17 @@ typedef struct s_vec2
 
 typedef struct s_player
 {
+	int		x_f;
+	int		y_f;
 	t_vec2		pos; 
 	t_vec2		dir;
+	t_vec2		raydir;
+	t_vec2		plane;
+	t_vec2		sdist;
 	t_vec2		old_dir;
 	t_vec2		delta;
+	t_vec2		cam;
+	float		perpudist;
 	char		cardi;
 }		t_player;
 
@@ -180,8 +188,8 @@ int		key_move(int keycode, t_scene *scene);
 //int		del_old_print_player(t_scene *scene, int x, int y);
 int		key_right(t_player *player);
 int		key_left(t_player *player);
-int		key_down(t_player *player, int x);
-int		key_up(t_player *player, int x, int y);
+int		key_down(t_scene *scene, t_player *player, int x);
+int		key_up(t_scene *scene, t_player *player, int x, int y);
 //int		print_dir(t_scene *scene, int x, int y);
 
 ////////// WIN_MINIMAP ///
