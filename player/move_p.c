@@ -44,9 +44,11 @@ int	key_down(t_scene *scene, t_player *player, int x)
 {
 	(void)x;
 	(void)scene;
-	//if (scene->map.tab_map[(int)(player->pos.y - (player->dir.y * SPD * 2))][(int)player->pos.x] == '0')
+	if (scene->player.perpwdist <= 0.5)
+		return (0);
+	//if (scene->map.tab_map[(int)(player->pos.y - (player->dir.y * SPD))][(int)player->pos.x] == '0')
 		player->pos.y -= player->dir.y * SPD;
-	//if (scene->map.tab_map[(int)player->pos.y][(int)(player->pos.x - (player->dir.x * SPD * 2))] == '0')
+	//if (scene->map.tab_map[(int)player->pos.y][(int)(player->pos.x - (player->dir.x * SPD))] == '0')
 		player->pos.x -= player->dir.x * SPD;
 	return (0);
 }
@@ -56,9 +58,11 @@ int	key_up(t_scene *scene, t_player *player, int x, int y)
 	(void)x;
 	(void)y;
 	(void)scene;
-	//if (scene->map.tab_map[(int)(player->pos.y + (player->dir.y * SPD * 2))][(int)player->pos.x] == '0')
+	// if (scene->player.perpudist <= 0.5)
+	// 	return (0);
+	//if (scene->map.tab_map[(int)(player->pos.y + (player->dir.y * SPD))][(int)player->pos.x] == '0')
 		player->pos.y += player->dir.y * SPD;
-	//if (scene->map.tab_map[(int)player->pos.y][(int)(player->pos.x + (player->dir.x * SPD * 2))] == '0')
+	//if (scene->map.tab_map[(int)player->pos.y][(int)(player->pos.x + (player->dir.x * SPD))] == '0')
 		player->pos.x += player->dir.x * SPD;
 	return (0);
 }

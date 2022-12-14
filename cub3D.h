@@ -65,7 +65,7 @@ typedef struct s_player
 	t_vec2		old_dir;
 	t_vec2		delta;
 	t_vec2		cam;
-	float		perpudist;
+	float		perpwdist;
 	char		cardi;
 }		t_player;
 
@@ -95,6 +95,7 @@ typedef struct s_map
 
 typedef struct	s_img {
 	void	*img;
+	void	*map;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -199,6 +200,8 @@ int		mxl_pixel_put(t_scene *scene, int x, int y, int color);
 int		mini_map_pixel(t_scene *scene, int x, int y, int floor, int size);
 int		mini_map_pixel_border(t_scene *scene, int x, int y, int size);
 int		mlx_open_win(t_scene *scene);
+int		mlx_open_win_map(t_scene *scene);
+int		open_win_map(t_scene *scene);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
@@ -212,5 +215,6 @@ int		utils_c_w(char c, int car);
 
 ///////// TEST ///////////
 int		init_ray(t_scene *scene);
+int		init_miniray(t_scene *scene);
 
 #endif
