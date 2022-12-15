@@ -22,6 +22,7 @@ int	main(int argc, char **argv)
 	//mlx_loop_hook(scene->mlx.mlx, open_win_map, scene);
 	mlx_loop_hook(scene->mlx.mlx, open_win, scene);
 	mlx_hook(scene->mlx.win, 02, 1L << 0, key_move, scene);
+	mlx_key_hook(scene->mlx.win, key_ESC, scene);
 	mlx_loop(scene->mlx.mlx);
 	free_main(scene);
 	// free_tab(scene);

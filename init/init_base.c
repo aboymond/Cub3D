@@ -17,6 +17,11 @@ void	init_player(t_scene *scene)
 {
 	scene->player.pos.x = 0;
 	scene->player.pos.y = 0;
+	scene->player.plane.x = 0;
+	scene->player.plane.y = FOV;
+	scene->player.start = 0;
+	scene->player.end = 0;
+	scene->player.lineh = 0;
 }
 
 void	init_asset_var(t_scene *scene)

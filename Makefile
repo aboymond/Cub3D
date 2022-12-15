@@ -65,7 +65,7 @@ ifeq ($(shell uname), Linux)
 MLXLIB			=		./src_mlx/mlx-linux/libmlx.a
 DIR_MLX			=		./src_mlx/mlx-linux/
 LIBFT_MLX		=		$(MAKE) -C libft && $(MAKE) -C ./src_mlx/mlx-linux
-LIBS			=		-L ./src_mlx/mlx-linux/ -lmlx -Ilmlx -lXext -lX11
+LIBS			=		-L ./src_mlx/mlx-linux/ -lmlx -Ilmlx -lXext -lX11 -lm
 HEADER			=		-I./includes -I./libft/ -I./src_mlx/mlx-linux/
 endif
 

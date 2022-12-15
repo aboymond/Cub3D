@@ -11,8 +11,10 @@
 # define WHI 0x00FFFFFF
 # define WIN_X 1920
 # define WIN_Y 1080
-# define SPD 1
-# define SPDR 0.1
+#define texWidth 64
+#define texHeight 64
+# define SPD 0.44
+# define SPDR 0.2
 # define FOV 0.66
 
 # if defined(__APPLE__) && defined(__MACH__)
@@ -38,6 +40,7 @@
 #  define W_KEY					119
 #  define S_KEY					115
 #  define D_KEY					100
+#  define SHIFT					6530
 # endif
 
 typedef struct s_mlx
@@ -57,10 +60,16 @@ typedef struct s_player
 {
 	int		x_f;
 	int		y_f;
+	int		start;
+	int		end;
+	int		lineh;
+	int		color;
 	t_vec2		pos; 
 	t_vec2		dir;
 	t_vec2		raydir;
 	t_vec2		plane;
+	t_vec2		map;
+	t_vec2		old_plane;
 	t_vec2		sdist;
 	t_vec2		old_dir;
 	t_vec2		delta;
@@ -191,6 +200,8 @@ int		key_right(t_player *player);
 int		key_left(t_player *player);
 int		key_down(t_scene *scene, t_player *player, int x);
 int		key_up(t_scene *scene, t_player *player, int x, int y);
+int		key_ESC(int keycode, t_scene *scene);
+int		key_move2(int keycode, t_scene *scene);
 //int		print_dir(t_scene *scene, int x, int y);
 
 ////////// WIN_MINIMAP ///
