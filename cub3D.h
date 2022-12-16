@@ -14,7 +14,7 @@
 #define texWidth 64
 #define texHeight 64
 # define SPD 0.44
-# define SPDR 0.2
+# define SPDR 0.1
 # define FOV 0.66
 
 # if defined(__APPLE__) && defined(__MACH__)
@@ -64,6 +64,9 @@ typedef struct s_player
 	int		end;
 	int		lineh;
 	int		color;
+	int		stepx;
+	int		stepy;
+	int		side;
 	t_vec2		pos; 
 	t_vec2		dir;
 	t_vec2		raydir;
@@ -198,10 +201,11 @@ int		key_move(int keycode, t_scene *scene);
 //int		del_old_print_player(t_scene *scene, int x, int y);
 int		key_right(t_player *player);
 int		key_left(t_player *player);
-int		key_down(t_scene *scene, t_player *player, int x);
+int		key_down(t_scene *scene, t_player *player, int x, int y);
 int		key_up(t_scene *scene, t_player *player, int x, int y);
 int		key_ESC(int keycode, t_scene *scene);
 int		key_move2(int keycode, t_scene *scene);
+int		init_pos_player_map(t_scene *scene, int y, int x);
 //int		print_dir(t_scene *scene, int x, int y);
 
 ////////// WIN_MINIMAP ///
@@ -213,6 +217,7 @@ int		mini_map_pixel_border(t_scene *scene, int x, int y, int size);
 int		mlx_open_win(t_scene *scene);
 int		mlx_open_win_map(t_scene *scene);
 int		open_win_map(t_scene *scene);
+int		search_player(t_scene *scene);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
@@ -227,5 +232,15 @@ int		utils_c_w(char c, int car);
 ///////// TEST ///////////
 int		init_ray(t_scene *scene);
 int		init_miniray(t_scene *scene);
+int		draw_wall(t_scene *scene, int x);
+int		init_height_wall(t_scene *scene);
+int		init_color_wall(t_scene *scene);
+int		init_sdist(t_scene *scene);
+int		init_delta(t_scene *scene);
+int		dda_hit(t_scene *scene);
+int		init_ray_dir(t_scene *scene, int x);
+
+
+
 
 #endif
