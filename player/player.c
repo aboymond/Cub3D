@@ -31,7 +31,6 @@ int	init_pos_player_map(t_scene *scene, int y, int x)
 	if (scene->map.tab_map[y][x] == 'N')
 	{
 		print_player(scene,scene->player.pos.x, scene->player.pos.y);
-
 	}
 	else if (scene->map.tab_map[y][x] == 'S')
 	{

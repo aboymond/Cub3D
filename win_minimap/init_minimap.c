@@ -46,7 +46,7 @@ int	mini_map_init(t_scene *scene)
 			if (utils_c_w(scene->map.tab_map[y][x], 0) == 1)
 			{
 				mini_map_pixel(scene, x, y, 0, scene->map.map_size);
-				init_pos_player_map(scene, y, x);
+				//init_pos_player_map(scene, y, x);
 				scene->map.tab_map[y][x] = '0';
 			}
 			x++;

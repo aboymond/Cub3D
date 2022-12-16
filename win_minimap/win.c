@@ -18,7 +18,6 @@ int	mlx_open_win(t_scene *scene)
 
 int	open_win(t_scene *scene)
 {
-	//init_miniray(scene);
 	init_ray(scene);
 	mini_map_init(scene);
 	print_player(scene, scene->player.pos.x, scene->player.pos.y);
