@@ -14,8 +14,8 @@
 #define texWidth 64
 #define texHeight 64
 # define SPD 0.44
-# define SPDR 0.2
-# define FOV 0.66
+# define SPDR 0.66
+# define FOV 10
 
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
@@ -195,6 +195,8 @@ void	create_tab_integer_floor(char *str, t_asset *asset);
 int		init_pos_player(t_scene *scene, int y, int x, int size);
 int		print_player(t_scene *scene, int x, int y);
 int		key_move(int keycode, t_scene *scene);
+int		search_player(t_scene *scene);
+
 //int		del_old_print_player(t_scene *scene, int x, int y);
 int		key_right(t_player *player);
 int		key_left(t_player *player);
@@ -213,6 +215,7 @@ int		mini_map_pixel_border(t_scene *scene, int x, int y, int size);
 int		mlx_open_win(t_scene *scene);
 int		mlx_open_win_map(t_scene *scene);
 int		open_win_map(t_scene *scene);
+int		init_pos_player_map(t_scene *scene, int y, int x);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
