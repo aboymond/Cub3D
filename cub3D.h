@@ -13,9 +13,9 @@
 # define WIN_Y 1080
 #define texWidth 64
 #define texHeight 64
-# define SPD 0.44
+# define SPD 0.1
 # define SPDR 1
-# define FOV 0.66
+# define FOV 0.90
 
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
@@ -197,7 +197,7 @@ void	create_tab_integer_ceiling(char *str, t_asset *asset);
 void	create_tab_integer_floor(char *str, t_asset *asset);
 
 ////////// PLAYER /////////
-int		init_pos_player(t_scene *scene, int y, int x, int size);
+int		init_pos_player(t_scene *scene, int y, int x);
 int		print_player(t_scene *scene, int x, int y);
 int		key_move(int keycode, t_scene *scene);
 int		search_player(t_scene *scene);
@@ -205,11 +205,11 @@ int		search_player(t_scene *scene);
 //int		del_old_print_player(t_scene *scene, int x, int y);
 int		key_right(t_player *player);
 int		key_left(t_player *player);
-int		key_down(t_scene *scene, t_player *player, int x, int y);
-int		key_up(t_scene *scene, t_player *player, int x, int y);
+int		key_down(t_scene *scene, t_player *player);
+int		key_up(t_scene *scene, t_player *player);
 int		key_ESC(int keycode, t_scene *scene);
 int		key_move2(int keycode, t_scene *scene);
-int		init_pos_player_map(t_scene *scene, int y, int x);
+int		init_pos_player_map(t_scene *scene, int y, int x, int size);
 //int		print_dir(t_scene *scene, int x, int y);
 
 ////////// WIN_MINIMAP ///

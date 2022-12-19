@@ -19,6 +19,8 @@ void	init_player(t_scene *scene)
 	scene->player.pos.y = 0;
 	scene->player.plane.x = 0;
 	scene->player.plane.y = FOV;
+	scene->player.sdist.x = 0;
+	scene->player.sdist.y = 0;
 	scene->player.start = 0;
 	scene->player.end = 0;
 	scene->player.lineh = 0;

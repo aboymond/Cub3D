@@ -25,13 +25,13 @@ int	mini_map_pixel(t_scene *scene, int x, int y, int floor, int size)
 		{
 			while (i < ((x * size) + size))
 			{
-				mlx_pixel_put(scene->mlx.mlx, scene->mlx.win, i, j, WHI);
+				mxl_pixel_put(scene, i, j, WHI);
 				i++;
 			}
 			i = (x * size);
 			j++;
 		}
-		//mini_map_pixel_border(scene, x, y, size);
+		mini_map_pixel_border(scene, x, y, size);
 	}
 	else
 	{
@@ -39,7 +39,7 @@ int	mini_map_pixel(t_scene *scene, int x, int y, int floor, int size)
 		{
 			while (i < ((x * size) + size))
 			{
-				mlx_pixel_put(scene->mlx.mlx, scene->mlx.win, i, j, GRE);
+				mxl_pixel_put(scene, i, j, GRE);
 				i++;
 			}
 			i = (x * size);
@@ -59,14 +59,14 @@ int	mini_map_pixel_border(t_scene *scene, int x, int y, int size)
 	j = (y * size);
 	while (i < ((x * size) + size))
 	{
-		mlx_pixel_put(scene->mlx.mlx, scene->mlx.win, i, y * size, RED);
-		mlx_pixel_put(scene->mlx.mlx, scene->mlx.win, i, (y * size) + size, YEL);
+		mxl_pixel_put(scene, i, y * size, RED);
+		mxl_pixel_put(scene, i, (y * size) + size, YEL);
 		i++;
 	}
 	while (j < ((y * size) + size))
 	{
-		mlx_pixel_put(scene->mlx.mlx, scene->mlx.win, x * size, j, BLU);
-		mlx_pixel_put(scene->mlx.mlx, scene->mlx.win, (x * size) + size, j, GREEN);
+		mxl_pixel_put(scene, x * size, j, BLU);
+		mxl_pixel_put(scene, (x * size) + size, j, GREEN);
 		j++;
 	}
 	// i = (x * size);
