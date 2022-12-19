@@ -200,30 +200,35 @@ int	dda_hit(t_scene *scene)
 
 int	init_ray_dir(t_scene *scene, int x)
 {
+	scene->player.rposx = scene->player.pos.x / scene->map.map_size;
+	scene->player.rposy = scene->player.pos.y / scene->map.map_size;
 	scene->player.cam.x = 2 * x / (float)WIN_X - 1;
 	scene->player.raydir.x = scene->player.dir.x + scene->player.plane.x * scene->player.cam.x;
 	scene->player.raydir.y = scene->player.dir.y + (scene->player.plane.y * scene->player.cam.x);
-	scene->player.x_f = (int)(scene->player.pos.x / scene->map.map_size);
-	scene->player.y_f = (int)(scene->player.pos.y / scene->map.map_size);
+	scene->player.x_f = (int)scene->player.rposx;
+	scene->player.y_f = (int)scene->player.rposy;
 	return (0);
 }
 
 int	init_delta(t_scene *scene)
 {
-	// float	tmpx;
-	// float	tmpy;
+	float	tmpx;
+	float	tmpy;
 
-	//tmpx = (scene->player.raydir.x * scene->player.raydir.x);
-	//tmpy = (scene->player.raydir.y * scene->player.raydir.y);
-
-	if (scene->player.raydir.x == 0)
-		scene->player.delta.x = INFINITY;
-	else
-		scene->player.delta.x = fabs(1 / scene->player.raydir.x);
-	if (scene->player.raydir.y == 0)
-		scene->player.delta.y = INFINITY;
-	else
-		scene->player.delta.y = fabs(1 / scene->player.raydir.y);
+	// scene->player.delta.x = sqrt(1 + ((scene->player.pos.y / scene->map.map_size) * env->ray.rdiry) /
+		// (env->ray.rdirx * env->ray.rdirx));
+	tmpx = (scene->player.raydir.x * scene->player.raydir.x);
+	tmpy = (scene->player.raydir.y * scene->player.raydir.y);
+	scene->player.delta.x = sqrt(1 + (tmpy / tmpx));
+	scene->player.delta.y = sqrt(1 + (tmpx / tmpy));
+	// if (scene->player.raydir.x == 0)
+	// 	scene->player.delta.x = INFINITY;
+	// else
+		// scene->player.delta.x = fabs(1 / scene->player.raydir.x);
+	// if (scene->player.raydir.y == 0)
+	// 	scene->player.delta.y = INFINITY;
+	// else
+		// scene->player.delta.y = fabs(1 / scene->player.raydir.y);
 	return (0);
 }
 
@@ -232,25 +237,24 @@ int	init_sdist(t_scene *scene)
 		if (scene->player.dir.x < 0)
 		{
 			scene->player.stepx = -1;
-			scene->player.sdist.x = ((scene->player.pos.x / scene->map.map_size)
+			scene->player.sdist.x = (scene->player.rposx
 				- scene->player.x_f) * scene->player.delta.x;
 		}
 		else
 		{
 			scene->player.stepx = 1;
-			scene->player.sdist.x = (scene->player.x_f + 1 - (float)(scene->player.pos.x / scene->map.map_size)) * scene->player.delta.x;
+			scene->player.sdist.x = (scene->player.x_f + 1.0 - scene->player.rposx) * scene->player.delta.x;
 		}
 		if (scene->player.dir.y < 0)
 		{
 			scene->player.stepy = -1;
-			scene->player.sdist.y = ((float)(scene->player.pos.y / scene->map.map_size)
+			scene->player.sdist.y = (scene->player.rposy
 				- scene->player.y_f) * scene->player.delta.y;
 		}
 		else
 		{
 			scene->player.stepy = 1;
-			scene->player.sdist.y = (scene->player.y_f + 1 - (float)(scene->player.pos.y
-				 / scene->map.map_size)) * scene->player.delta.y;
+			scene->player.sdist.y = ((scene->player.y_f + 1.0) - scene->player.rposy) * scene->player.delta.y;
 		}
 		return (0);
 }

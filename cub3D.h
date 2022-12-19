@@ -14,7 +14,7 @@
 #define texWidth 64
 #define texHeight 64
 # define SPD 0.44
-# define SPDR 0.1
+# define SPDR 1
 # define FOV 0.66
 
 # if defined(__APPLE__) && defined(__MACH__)
@@ -67,6 +67,8 @@ typedef struct s_player
 	int		stepx;
 	int		stepy;
 	int		side;
+	float		rposx;
+	float		rposy;
 	t_vec2		pos; 
 	t_vec2		dir;
 	t_vec2		raydir;

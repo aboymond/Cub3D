@@ -27,23 +27,44 @@ int	key_move(int keycode, t_scene *scene)
 
 int	key_right(t_player *player)
 {
-	player->old_dir.x = player->dir.x;
-	player->dir.x = player->dir.x * cos(SPDR) - player->dir.y * sin(SPDR);
-	player->dir.y = player->old_dir.x * sin(SPDR) + player->dir.y * cos(SPDR);
-	player->old_plane.x = player->plane.x;
-	player->plane.x = player->plane.x * sin(SPDR) - player->plane.y * cos(SPDR);
-	player->plane.y = player->old_plane.x * sin(SPDR) + player->plane.y * cos(SPDR);
+	float	dir;
+	float	plane;
+
+	dir = player->dir.x;
+	plane = player->plane.x;
+	player->dir.x = player->dir.x * cos(SPDR * 0.1) - player->dir.y * sin(SPDR * 0.1);
+	player->dir.y = dir * sin(SPDR * 0.1) + player->dir.y * cos(SPDR * 0.1);
+	player->plane.x = player->plane.x * cos(SPDR * 0.1) - player->plane.y * sin(SPDR * 0.1);
+	player->plane.y = plane * sin(SPDR * 0.1) + player->plane.y * cos(SPDR * 0.1);
+
+	// player->old_dir.x = player->dir.x;
+	// player->dir.x = player->dir.x * cos(SPDR) - player->dir.y * sin(SPDR);
+	// player->dir.y = player->old_dir.x * sin(SPDR) + player->dir.y * cos(SPDR);
+	// player->old_plane.x = player->plane.x;
+	// player->plane.x = player->plane.x * sin(SPDR) - player->plane.y * cos(SPDR);
+	// player->plane.y = player->old_plane.x * sin(SPDR) + player->plane.y * cos(SPDR);
 	return (0);
 }
 
 int	key_left(t_player *player)
 {
-	player->old_dir.x = player->dir.x;
-	player->dir.x = player->dir.x * cos(-SPDR) - player->dir.y * sin(-SPDR);
-	player->dir.y = player->old_dir.x * sin(-SPDR) + player->dir.y * cos(-SPDR);
-	player->old_plane.x = player->plane.x;
-	player->plane.x = player->plane.x * sin(-SPDR) - player->plane.y * cos(-SPDR);
-	player->plane.y = player->old_plane.x * sin(-SPDR) + player->plane.y * cos(-SPDR);
+	
+	float	dir;
+	float	plane;
+
+	dir = player->dir.x;
+	plane = player->plane.x;
+	player->dir.x = player->dir.x * cos(-SPDR * 0.1) - player->dir.y * sin(-SPDR * 0.1);
+	player->dir.y = dir * sin(-SPDR * 0.1) + player->dir.y * cos(-SPDR * 0.1);
+	player->plane.x = player->plane.x * cos(-SPDR * 0.1) - player->plane.y * sin(-SPDR * 0.1);
+	player->plane.y = plane * sin(-SPDR * 0.1) + player->plane.y * cos(-SPDR * 0.1);
+
+	// player->old_dir.x = player->dir.x;
+	// player->dir.x = player->dir.x * cos(-SPDR) - player->dir.y * sin(-SPDR);
+	// player->dir.y = player->old_dir.x * sin(-SPDR) + player->dir.y * cos(-SPDR);
+	// player->old_plane.x = player->plane.x;
+	// player->plane.x = player->plane.x * sin(-SPDR) - player->plane.y * cos(-SPDR);
+	// player->plane.y = player->old_plane.x * sin(-SPDR) + player->plane.y * cos(-SPDR);
 
 	return (0);
 }
