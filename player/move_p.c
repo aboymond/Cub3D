@@ -66,8 +66,6 @@ int	key_left(t_player *player)
 
 int	key_down(t_scene *scene, t_player *player)
 {
-	printf("posssssssssssss = %f\n", player->pos.y);
-	exit(0);
 	if (scene->map.tab_map[(int)(player->pos.y  - player->dir.y * SPD)][(int)(player->pos.x - player->dir.x * SPD)] == '0')
 	{
 		player->pos.x -= player->dir.x * SPD;
