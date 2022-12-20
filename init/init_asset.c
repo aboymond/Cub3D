@@ -3,33 +3,36 @@
 int	init_asset(char *args, t_scene *scene)
 {
 	char	*tmp;
+	char	*trimmed;
 	int		fd;
 
 	fd = open(args, O_RDONLY);
 	compt_asset(args, scene);
 	tmp = get_next_line(fd);
-	tmp = ft_strtrim(tmp, " \n\t\v\r");
-	if (tmp == NULL || check_asset(scene, tmp) == 1)
+	trimmed = ft_strtrim(tmp, " \n\t\v\r");
+	free(tmp);
+	if (trimmed == NULL || check_asset(scene, trimmed) == 1)
 	{
-		free (tmp);
+		free (trimmed);
 		close (fd);
 		return (1);
 	}
 	scene->asset.cmpt_asset_tab++;
-	while (tmp)
+	while (trimmed)
 	{
-		free (tmp);
+		free(trimmed);
 		tmp = get_next_line(fd);
-		tmp = ft_strtrim(tmp, " \n\t\v\r");
-		if (tmp == NULL || check_asset(scene, tmp) == 1)
+		trimmed = ft_strtrim(tmp, " \n\t\v\r");
+		free(tmp);
+		if (trimmed == NULL || check_asset(scene, trimmed) == 1)
 		{
-			free (tmp);
+			free (trimmed);
 			close (fd);
 			return (1);
 		}
 		scene->asset.cmpt_asset_tab++;
 	}
-	free (tmp);
+	free (trimmed);
 	close (fd);
 	return (0);
 }
