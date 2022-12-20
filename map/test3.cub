@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+NO ./truc muche1
+SD ./truc muche2
+WE ./truc muche3
+EA ./truc muche4
+=======
 NO ./truc muche
 SD ./truc muche1
 WE ./truc muche2
 EA ./truc muche3
+>>>>>>> f79a8ce03d97297fe5310aba7ea449058303d879
 
 F 220, 100, 0
 C 225, 30, 0

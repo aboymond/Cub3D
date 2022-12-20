@@ -17,13 +17,9 @@ int	asset_color(t_asset *asset)
 			j++;
 		}
 		if (valid_color_name(tmp, i) == -1)
-		{
-			free(tmp);
 			return (-1);
-		}
 		j = 0;
 	}
-	free(tmp);
 	if (value_color(asset) == -1)
 		return (-1);
 	return (0);
@@ -34,13 +30,20 @@ int	valid_color_name(char *str, int i)
 	if (i == 0)
 	{
 		if (ft_strcmp(str, "F") != 0)
+		{
+			free(str);
 			return (-1);
+		}
 	}
 	if (i == 1)
 	{
 		if (ft_strcmp(str, "C") != 0)
+		{
+			free(str);
 			return (-1);
+		}
 	}
+	free(str);
 	return (0);
 }
 
@@ -50,17 +53,15 @@ int	value_color(t_asset *asset)
 	char	*c_ceiling;
 
 	c_floor = ft_strdup(asset->asset_color[0]);
-	printf("c_floor = %p\n", c_floor);
 	c_ceiling = ft_strdup(asset->asset_color[1]);
-	printf("c_floor = %p\n", c_ceiling);
-	if (valid_color(c_floor, asset) == -1 || valid_color(c_ceiling, asset) == -1)
+	if (valid_color(c_floor) == -1|| valid_color(c_ceiling) == -1)
 		return (-1);
 	convert_tab_char_to_int(c_floor, c_ceiling, asset);
 	
 	return (0);
 }
 
-int	valid_color(char *str, t_asset *asset)
+int	valid_color(char *str)
 {
 	int	i;
 
@@ -71,9 +72,8 @@ int	valid_color(char *str, t_asset *asset)
 			break ;
 		i++;
 	}
-	if (color_into_d_tab(&str[i], asset) == -1)
+	if (color_into_d_tab(&str[i]) == -1)
 	{
-		printf("test = %p\n", &str);
 		free(str);
 		return (-1);
 	}
@@ -81,23 +81,27 @@ int	valid_color(char *str, t_asset *asset)
 	return (0);
 }
 
-int	color_into_d_tab(char *str, t_asset *asset)
+int	color_into_d_tab(char *str)
 {
-	printf("str 1 = %p\n", str);
 	char	**trim_str;
+	char	**trimmed;
 	int		i;
-	(void)asset;
 
 	i = -1;
 	trim_str = ft_split(str, ' ');
+	trimmed = ft_calloc(4, sizeof(char *));
 	if (count_nbr_color(trim_str) == -1)
 		return (-1);
 	while (trim_str[++i])
-		trim_str[i] = ft_strtrim(trim_str[i], ",");
-	if (is_a_digit(trim_str) == -1)
+	{
+		trimmed[i] = ft_strtrim(trim_str[i], ",");
+		free(trim_str[i]);
+	}
+	free(trim_str);
+	if (is_a_digit(trimmed) == -1)
 		return (-1);
-	if (color_rvb(trim_str) == -1)
+	if (color_rvb(trimmed) == -1)
 		return (-1);
-	free_d_tab(trim_str);
+	free_d_tab(trimmed);
 	return (0);
 }

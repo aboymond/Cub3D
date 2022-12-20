@@ -15,6 +15,7 @@ int	main(int argc, char **argv)
 		return (0);
 	compt_map(argv[1], scene);
 	map_is_close(scene);
+
 	//open_win(scene);
 	//mlx_open_win_map(scene);
 	//open_win_map(scene);
@@ -40,6 +41,23 @@ int	free_main(t_scene *scene)
 		free(scene->map.tab_map[i]);
 		i++;
 	}
+	i = 0;
+	while (scene->asset.tab_path[i])
+	{
+		free(scene->asset.tab_path[i]);
+		i++;
+	}
+	i = 0;
+	while (scene->asset.asset_color[i])
+	{
+		free(scene->asset.asset_color[i]);
+		i++;
+	}
+	free(scene->asset.asset_color);
+	free(scene->asset.asset_NSWE);
+	free(scene->asset.ceiling_color);
+	free(scene->asset.floor_color);
+	free(scene->asset.tab_path);
 	free(scene->map.tab_map);
 	free(scene->mlx.mlx);
 	free(scene);
