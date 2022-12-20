@@ -14,7 +14,7 @@ int	init_ray(t_scene *scene)
 		dda_hit(scene);
 		init_height_wall(scene);
 		init_color_wall(scene);
-
+		init_texture(scene);
 		draw_wall(scene, x);
 
 		// if (side == 0)
@@ -197,5 +197,33 @@ int	draw_wall(t_scene *scene, int x)
 	}
 	while (y++ < WIN_Y - 1)
 		mxl_pixel_put(scene, x, y, YEL);
+	return (0);
+}
+
+int texture(t_scene *scene)
+{
+	float   step;
+	//float texpos;
+
+	step = 0.0;
+	if (scene->player.side == 0)
+		scene->player.wallx = scene->player.pos.y + scene->player.perpwdist * scene->player.raydir.y;
+	else
+		scene->player.wallx = scene->player.pos.x + scene->player.perpwdist * scene->player.raydir.x;
+	if (scene->player.side == 0 && scene->player.raydir.x > 0)
+		scene->player.texx = texWidth - scene->player.texx - 1;
+	if (scene->player.side == 1 && scene->player.raydir.y < 0)
+		scene->player.texx = texWidth - scene->player.texx - 1;
+
+	step = 1.0 * texHeight / scene->player.lineh;
+	return (0);
+}
+
+int init_texture(t_scene *scene)
+{
+	scene->asset.floor_hex = 256 * 256 * scene->asset.floor_color[0] + 256 * scene->asset.floor_color[1] + scene->asset.floor_color[2];
+	printf("floor_color[0] = %d floor_color[1] = %d floor_color[2] = %d\n", scene->asset.floor_color[0], scene->asset.floor_color[1], scene->asset.floor_color[2]);
+	scene->asset.ceil_hex = 256 * 256 * scene->asset.ceiling_color[0] + 256 * scene->asset.ceiling_color[1] + scene->asset.ceiling_color[2];
+	printf("floor = %x, ceil %x\n", scene->asset.floor_hex, scene->asset.ceil_hex);
 	return (0);
 }

@@ -67,8 +67,10 @@ typedef struct s_player
 	int		stepx;
 	int		stepy;
 	int		side;
+	int		texx;
 	float		rposx;
 	float		rposy;
+	float		wallx;
 	t_vec2		pos; 
 	t_vec2		dir;
 	t_vec2		raydir;
@@ -91,6 +93,8 @@ typedef struct s_asset
 	int			*floor_color;
 	int			*ceiling_color;
 	char		**asset_color;
+	int			floor_hex;
+	int			ceil_hex;
 	int			cmpt_asset;
 	int			cmpt_asset_tab;
 	int			int_NSWE;
@@ -244,7 +248,8 @@ int		init_sdist(t_scene *scene);
 int		init_delta(t_scene *scene);
 int		dda_hit(t_scene *scene);
 int		init_ray_dir(t_scene *scene, int x);
-
+int		texture(t_scene *scene);
+int		init_texture(t_scene *scene);
 
 
 
