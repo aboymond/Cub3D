@@ -8,6 +8,7 @@ int	init_asset(char *args, t_scene *scene)
 	fd = open(args, O_RDONLY);
 	compt_asset(args, scene);
 	tmp = get_next_line(fd);
+	tmp = ft_strtrim(tmp, " \n\t\v\r");
 	if (tmp == NULL || check_asset(scene, tmp) == 1)
 	{
 		free (tmp);
@@ -19,6 +20,7 @@ int	init_asset(char *args, t_scene *scene)
 	{
 		free (tmp);
 		tmp = get_next_line(fd);
+		tmp = ft_strtrim(tmp, " \n\t\v\r");
 		if (tmp == NULL || check_asset(scene, tmp) == 1)
 		{
 			free (tmp);

@@ -3,11 +3,9 @@
 int	path_not_valid(t_asset *asset)
 {
 	int 	i;
-	int		j;
 	char 	**tab_path;
 
 	i = 0;
-	j = 0;
 	tab_path = ft_calloc(asset->nbr_NSWE + 1, sizeof(char *));
 	while (asset->asset_NSWE[i])
 	{

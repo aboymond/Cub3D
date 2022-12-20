@@ -1,12 +1,12 @@
 NO ./truc muche
-SD ./truc muche
-WE ./truc muche
-EA ./truc muche
+SD ./truc muche1
+WE ./truc muche2
+EA ./truc muche3
 
 F 245, 255, 0
 C 225, 30, 0
 
 1111111 11111111
 1000000100000011
-1000000000000011
+1E00000000000011
 1111111111111111

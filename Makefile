@@ -4,12 +4,13 @@ NAME			=		cub3D
 
 #***** Sources / Objs *****#
 
-SRC				=		main.c test.c \
+SRC				=		main.c utils_free.c test_ray.c\
 						$(addprefix ./init/, init_base.c init_map.c init_asset.c cmp_asset.c utils.c)\
 						$(addprefix ./error/, error_args.c) \
 						$(addprefix ./asset_cardinal/, asset_is_valid.c check_path_is_valid.c) \
-						$(addprefix ./asset_color/, asset_color.c color_nbr.c asset_color_utils.c) \
-						$(addprefix ./free/, utils_free.c)
+						$(addprefix ./asset_color/, asset_color.c color_nbr.c asset_color_utils.c)\
+						$(addprefix ./win_minimap/, init_minimap.c mini_map.c win.c)\
+						$(addprefix ./player/, player.c move_p.c)
 
 OBJS			=		$(SRC:.c=.o)
 
@@ -64,7 +65,7 @@ ifeq ($(shell uname), Linux)
 MLXLIB			=		./src_mlx/mlx-linux/libmlx.a
 DIR_MLX			=		./src_mlx/mlx-linux/
 LIBFT_MLX		=		$(MAKE) -C libft && $(MAKE) -C ./src_mlx/mlx-linux
-LIBS			=		-L ./src_mlx/mlx-linux/ -lmlx -Ilmlx -lXext -lX11
+LIBS			=		-L ./src_mlx/mlx-linux/ -lmlx -Ilmlx -lXext -lX11 -lm
 HEADER			=		-I./includes -I./libft/ -I./src_mlx/mlx-linux/
 endif
 
@@ -98,6 +99,7 @@ l :			${OBJS}
 			@${LIBFT_MLX} all
 			@${CC} ${L} ${OBJS} ${LIBFT} ${LIBS} ${HEADER} -o ${NAME}
 			@$(END_COMP)
+
 
 #***** Clean *****#
 

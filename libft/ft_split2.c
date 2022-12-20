@@ -1,6 +1,6 @@
 #include "libft.h"
 
-int	static	ft_nbr_word(const char *s, char c)
+static int	ft_nbr_word(const char *s, char c)
 {
 	int	len;
 	int	i;

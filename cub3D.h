@@ -11,7 +11,11 @@
 # define WHI 0x00FFFFFF
 # define WIN_X 1920
 # define WIN_Y 1080
-# define SPD 0.5
+#define texWidth 64
+#define texHeight 64
+# define SPD 0.1
+# define SPDR 1
+# define FOV 0.90
 
 # if defined(__APPLE__) && defined(__MACH__)
 #  include "./src_mlx/mlx/mlx.h"
@@ -27,6 +31,7 @@
 
 # else
 #  include "./src_mlx/mlx-linux/mlx.h"
+#  define ESC					65307
 #  define LEFT_KEY				65361
 #  define RIGHT_KEY				65363
 #  define UP_KEY				65362
@@ -35,7 +40,7 @@
 #  define W_KEY					119
 #  define S_KEY					115
 #  define D_KEY					100
-#  define ESC					65307
+#  define SHIFT					6530
 # endif
 
 typedef struct s_mlx
@@ -53,9 +58,28 @@ typedef struct s_vec2
 
 typedef struct s_player
 {
+	int		x_f;
+	int		y_f;
+	int		start;
+	int		end;
+	int		lineh;
+	int		color;
+	int		stepx;
+	int		stepy;
+	int		side;
+	float		rposx;
+	float		rposy;
 	t_vec2		pos; 
 	t_vec2		dir;
+	t_vec2		raydir;
+	t_vec2		plane;
+	t_vec2		map;
+	t_vec2		old_plane;
+	t_vec2		sdist;
 	t_vec2		old_dir;
+	t_vec2		delta;
+	t_vec2		cam;
+	float		perpwdist;
 	char		cardi;
 }		t_player;
 
@@ -85,6 +109,7 @@ typedef struct s_map
 
 typedef struct	s_img {
 	void	*img;
+	void	*map;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -172,14 +197,19 @@ void	create_tab_integer_ceiling(char *str, t_asset *asset);
 void	create_tab_integer_floor(char *str, t_asset *asset);
 
 ////////// PLAYER /////////
-int		init_pos_player(t_scene *scene, int y, int x, int size);
+int		init_pos_player(t_scene *scene, int y, int x);
 int		print_player(t_scene *scene, int x, int y);
 int		key_move(int keycode, t_scene *scene);
+int		search_player(t_scene *scene);
+
 //int		del_old_print_player(t_scene *scene, int x, int y);
-int		key_right(t_scene *scene);
-int		key_left(t_scene *scene);
-int		key_down(t_scene *scene, int x);
-int		key_up(t_scene *scene, int x, int y);
+int		key_right(t_player *player);
+int		key_left(t_player *player);
+int		key_down(t_scene *scene, t_player *player);
+int		key_up(t_scene *scene, t_player *player);
+int		key_ESC(int keycode, t_scene *scene);
+int		key_move2(int keycode, t_scene *scene);
+int		init_pos_player_map(t_scene *scene, int y, int x, int size);
 //int		print_dir(t_scene *scene, int x, int y);
 
 ////////// WIN_MINIMAP ///
@@ -189,6 +219,9 @@ int		mxl_pixel_put(t_scene *scene, int x, int y, int color);
 int		mini_map_pixel(t_scene *scene, int x, int y, int floor, int size);
 int		mini_map_pixel_border(t_scene *scene, int x, int y, int size);
 int		mlx_open_win(t_scene *scene);
+int		mlx_open_win_map(t_scene *scene);
+int		open_win_map(t_scene *scene);
+int		search_player(t_scene *scene);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
@@ -202,5 +235,17 @@ int		cpy_map_to_tab(t_scene *scene, char *line, int i);
 int		utils_c_w(char c, int car);
 
 ///////// TEST ///////////
+int		init_ray(t_scene *scene);
+int		init_miniray(t_scene *scene);
+int		draw_wall(t_scene *scene, int x);
+int		init_height_wall(t_scene *scene);
+int		init_color_wall(t_scene *scene);
+int		init_sdist(t_scene *scene);
+int		init_delta(t_scene *scene);
+int		dda_hit(t_scene *scene);
+int		init_ray_dir(t_scene *scene, int x);
+
+
+
 
 #endif
