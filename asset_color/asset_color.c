@@ -2,6 +2,7 @@
 
 int	asset_color(t_asset *asset)
 {
+
 	int		i;
 	int		j;
 	char	*tmp;
@@ -54,10 +55,11 @@ int	value_color(t_asset *asset)
 
 	c_floor = ft_strdup(asset->asset_color[0]);
 	c_ceiling = ft_strdup(asset->asset_color[1]);
-	if (valid_color(c_floor) == -1|| valid_color(c_ceiling) == -1)
+	if (valid_color(c_ceiling) == -1)
+		return (-1);
+	if (valid_color(c_floor) == -1)
 		return (-1);
 	convert_tab_char_to_int(c_floor, c_ceiling, asset);
-	
 	return (0);
 }
 
@@ -77,7 +79,6 @@ int	valid_color(char *str)
 		free(str);
 		return (-1);
 	}
-	free(str);
 	return (0);
 }
 

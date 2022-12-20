@@ -32,6 +32,7 @@ void	free_d_tab(char **str)
 
 void	convert_tab_char_to_int(char *floor, char *ceiling, t_asset *asset)
 {
+	// exit(0);
 	create_tab_integer_floor(floor, asset);
 	create_tab_integer_ceiling(ceiling, asset);
 }
@@ -46,6 +47,7 @@ void	create_tab_integer_floor(char *str, t_asset *asset)
 	i = -1;
 	asset->floor_color = malloc(sizeof(int) * 3);
 	fdp = ft_substr(str, 2, ft_strlen(str));
+	free(str);
 	tmp = ft_split(fdp, ' ');
 	free(fdp);
 	while (tmp[++i])
@@ -68,6 +70,7 @@ void	create_tab_integer_ceiling(char *str, t_asset *asset)
 	i = -1;
 	asset->ceiling_color = malloc(sizeof(int) * 3);
 	fdp = ft_substr(str, 2, ft_strlen(str));
+	free(str);
 	tmp = ft_split(fdp, ' ');
 	free(fdp);
 	while (tmp[++i])
