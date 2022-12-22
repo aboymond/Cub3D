@@ -21,6 +21,7 @@ int	path_not_valid(t_asset *asset)
 		//free_d_tab(tab_path);
 		return (p_error("Error:\n\tthere is same path"));
 	}
+	trim_space_in_path(asset->tab_path);
 	return (0);
 }
 
@@ -57,6 +58,26 @@ int two_same_path(char **path)
 		}
 		i++;
 		j = i + 1;
+	}
+	return (0);
+}
+
+int	trim_space_in_path(char	**path)
+{
+	int		i;
+	char	*tmp;
+	int		fd;
+
+	i = 0;
+	while (path[i])
+	{
+		tmp = ft_strdup(path[i]);
+		free(path[i]);
+		path[i] = ft_strtrim(tmp, " \n\t\v\r");
+		free(tmp);
+		if ((fd = open(path[i], O_RDONLY)))
+			return(p_error("texture not valid\n"));
+		i++;
 	}
 	return (0);
 }
