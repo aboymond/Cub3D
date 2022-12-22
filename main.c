@@ -15,7 +15,11 @@ int	main(int argc, char **argv)
 		return (0);
 	compt_map(argv[1], scene);
 	map_is_close(scene);
-
+	// printf("tab_path[0] = %s\n", scene->asset.tab_path[0]);
+	// printf("tab_path[1] = %s\n", scene->asset.tab_path[1]);
+	// printf("tab_path[2] = %s\n", scene->asset.tab_path[2]);
+	// printf("tab_path[3] = %s\n", scene->asset.tab_path[3]);
+	// exit (0);
 	//open_win(scene);
 	//mlx_open_win_map(scene);
 	//open_win_map(scene);

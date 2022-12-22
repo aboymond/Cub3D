@@ -199,6 +199,7 @@ int		two_same_path(char **path);
 void	convert_tab_char_to_int(char *floor, char *ceiling, t_asset *asset);
 void	create_tab_integer_ceiling(char *str, t_asset *asset);
 void	create_tab_integer_floor(char *str, t_asset *asset);
+int		trim_space_in_path(char	**path);
 
 ////////// PLAYER /////////
 int		init_pos_player(t_scene *scene, int y, int x);
