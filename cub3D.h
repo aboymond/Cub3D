@@ -43,6 +43,15 @@
 #  define SHIFT					6530
 # endif
 
+typedef struct s_tex
+{
+	void	*img;
+	int		h;
+	int		w;
+	void	*addr;
+	int		color;
+}		t_tex;
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -71,6 +80,7 @@ typedef struct s_player
 	float		rposx;
 	float		rposy;
 	float		wallx;
+	t_tex		*tex;
 	t_vec2		pos; 
 	t_vec2		dir;
 	t_vec2		raydir;
