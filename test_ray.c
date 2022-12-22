@@ -203,7 +203,7 @@ int	draw_wall(t_scene *scene, int x)
 int texture(t_scene *scene)
 {
 	float   step;
-	//float texpos;
+	float texpos;
 
 	step = 0.0;
 	if (scene->player.side == 0)
@@ -216,14 +216,14 @@ int texture(t_scene *scene)
 		scene->player.texx = texWidth - scene->player.texx - 1;
 
 	step = 1.0 * texHeight / scene->player.lineh;
+	texpos = (scene->player.start - WIN_Y / 2 + scene->player.lineh / 2) * step;
+	
 	return (0);
 }
 
 int init_texture(t_scene *scene)
 {
 	scene->asset.floor_hex = 256 * 256 * scene->asset.floor_color[0] + 256 * scene->asset.floor_color[1] + scene->asset.floor_color[2];
-	printf("floor_color[0] = %d floor_color[1] = %d floor_color[2] = %d\n", scene->asset.floor_color[0], scene->asset.floor_color[1], scene->asset.floor_color[2]);
 	scene->asset.ceil_hex = 256 * 256 * scene->asset.ceiling_color[0] + 256 * scene->asset.ceiling_color[1] + scene->asset.ceiling_color[2];
-	printf("floor = %x, ceil %x\n", scene->asset.floor_hex, scene->asset.ceil_hex);
 	return (0);
 }

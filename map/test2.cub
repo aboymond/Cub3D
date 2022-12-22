@@ -1,7 +1,7 @@
-NO ./truc muche1
-SD ./truc muche2
-WE ./truc muche3
-EA ./truc muche4
+NO ./texture/mur_b.xpm
+SD ./texture/mur_d.xpm
+WE ./texture/mur_d2.xpm
+EA ./texture/mur_m.xpm
 
 F 245, 255, 0
 C 225, 30, 0
@@ -13,4 +13,3 @@ C 225, 30, 0
 100000000000001
 100000000000001
 111111111111111
-
