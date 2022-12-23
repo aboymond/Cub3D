@@ -10,7 +10,8 @@ SRC				=		main.c utils_free.c test_ray.c\
 						$(addprefix ./asset_cardinal/, asset_is_valid.c check_path_is_valid.c) \
 						$(addprefix ./asset_color/, asset_color.c color_nbr.c asset_color_utils.c)\
 						$(addprefix ./win_minimap/, init_minimap.c mini_map.c win.c)\
-						$(addprefix ./player/, player.c move_p.c)
+						$(addprefix ./player/, player.c move_p.c)\
+						./src/ft_mlx/img.c	./src/assets.c
 
 OBJS			=		$(SRC:.c=.o)
 
@@ -92,12 +93,12 @@ logo :
 
 $(NAME) :	${OBJS}
 			@$(BS_N)
-			@${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${LIBS} ${HEADER} -o ${NAME}
+			${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${LIBS} ${HEADER} -o ${NAME}
 			@$(END_COMP)
 
 l :			${OBJS}
 			@${LIBFT_MLX} all
-			@${CC} ${L} ${OBJS} ${LIBFT} ${LIBS} ${HEADER} -o ${NAME}
+			${CC} ${L} ${OBJS} ${LIBFT} ${LIBS} ${HEADER} -o ${NAME}
 			@$(END_COMP)
 
 

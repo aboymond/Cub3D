@@ -5,12 +5,23 @@ int	mxl_pixel_put(t_scene *scene, int x, int y, int color)
 {
 	char	*dst ;
 
-	if ((x < 0 || y < 0) || (x > WIN_X || y > WIN_Y))
+	if ((x < 0 || y < 0) || (x >= WIN_X || y >= WIN_Y) || ((y * WIN_Y + x) >= WIN_X * WIN_Y - 1))
 		return(p_error("Error :\n\tMinimap"));
-	dst = scene->img.addr + (y * scene->img.line_length + x * (scene->img.bits_per_pixel / 8));
+	dst = scene->img->addr + (y * scene->img->line_length + x * (scene->img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 	return (0);
 }
+
+// int	mxl_texture_put(t_scene *scene, int x, int y, int color)
+// {
+// 	char	*dst ;
+
+// 	if ((x < 0 || y < 0) || (x > WIN_X || y > WIN_Y))
+// 		return(p_error("Error :\n\tMinimap"));
+// 	dst = scene->tex[0].addr + (y * scene->img->line_length + x * (scene->img->bits_per_pixel / 8));
+// 	*(unsigned int*)dst = color;
+// 	return (0);
+// }
 
 int	mini_map_pixel(t_scene *scene, int x, int y, int floor, int size)
 {

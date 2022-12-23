@@ -75,8 +75,14 @@ int	trim_space_in_path(char	**path)
 		free(path[i]);
 		path[i] = ft_strtrim(tmp, " \n\t\v\r");
 		free(tmp);
-		if ((fd = open(path[i], O_RDONLY)))
+		printf("path [%d], %s\n", i, path[i]);
+		fd = open(path[i], O_RDONLY);
+		if (fd == -1)
+		{
+			close (fd);
 			return(p_error("texture not valid\n"));
+		}
+		close(fd);
 		i++;
 	}
 	return (0);
