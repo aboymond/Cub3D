@@ -28,13 +28,13 @@ void	init_player(t_scene *scene)
 
 void	init_asset_var(t_scene *scene)
 {
-
 	scene->asset.cmpt_asset = 0;
 	scene->asset.cmpt_asset_tab = 0;
 	scene->asset.int_color = 0;
 	scene->asset.nbr_color = 0;
 	scene->asset.int_NSWE = 0;
 	scene->asset.nbr_NSWE = 0;
+	init_assets(&scene->asset);
 }
 
 void	callocmap(t_scene *scene, int haut)

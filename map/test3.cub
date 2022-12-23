@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-NO ./truc muche1
-SD ./truc muche2
-WE ./truc muche3
-EA ./truc muche4
-=======
-NO ./truc muche
-SD ./truc muche1
-WE ./truc muche2
-EA ./truc muche3
->>>>>>> f79a8ce03d97297fe5310aba7ea449058303d879
+NO ./texture/mur_b.xpm
+SD ./texture/mur_d.xpm
+WE ./texture/mur_d2.xpm
+EA ./texture/mur_m.xpm
 
 F 220, 100, 0
 C 225, 30, 0
@@ -19,7 +12,7 @@ C 225, 30, 0
 100000111110111000011
 11100000010000100001
   10000001111010000111
-111000S0000000100001
+111000N0000000100001
 11111000111111100001
      101  11100101111
       1     111111

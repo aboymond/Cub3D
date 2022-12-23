@@ -15,18 +15,21 @@ int	main(int argc, char **argv)
 		return (0);
 	compt_map(argv[1], scene);
 	map_is_close(scene);
-	// printf("tab_path[0] = %s\n", scene->asset.tab_path[0]);
-	// printf("tab_path[1] = %s\n", scene->asset.tab_path[1]);
-	// printf("tab_path[2] = %s\n", scene->asset.tab_path[2]);
-	// printf("tab_path[3] = %s\n", scene->asset.tab_path[3]);
-	// exit (0);
 	//open_win(scene);
 	//mlx_open_win_map(scene);
 	//open_win_map(scene);
 	search_player(scene);
+
+	if (load_assets(scene->mlx.mlx, &scene->asset))
+	{
+		p_error("load assets failed");
+		//free rest
+		return (1);
+	}
+
 	mlx_open_win(scene);
-	mlx_hook(scene->mlx.win, 02, 1L << 0, key_move, scene);
 	mlx_loop_hook(scene->mlx.mlx, open_win, scene);
+	mlx_hook(scene->mlx.win, 02, 1L << 0, key_move, scene);
 	mlx_key_hook(scene->mlx.win, key_ESC, scene);
 	mlx_loop(scene->mlx.mlx);
 	free_main(scene);
@@ -57,6 +60,7 @@ int	free_main(t_scene *scene)
 		free(scene->asset.asset_color[i]);
 		i++;
 	}
+	free_assets(scene->mlx.mlx, &scene->asset);
 	free(scene->asset.asset_color);
 	free(scene->asset.asset_NSWE);
 	free(scene->asset.ceiling_color);
@@ -64,6 +68,8 @@ int	free_main(t_scene *scene)
 	free(scene->asset.tab_path);
 	free(scene->map.tab_map);
 	free(scene->mlx.mlx);
+	//free(scene->img);
 	free(scene);
 	exit (0);
 }
+

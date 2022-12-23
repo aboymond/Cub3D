@@ -66,10 +66,10 @@ int	key_left(t_player *player)
 
 int	key_down(t_scene *scene, t_player *player)
 {
-	if (scene->map.tab_map[(int)(player->pos.y  - player->dir.y * SPD)][(int)(player->pos.x - player->dir.x * SPD)] == '0')
+	if (scene->map.tab_map[(int)(player->pos.y  + player->dir.y * SPD)][(int)(player->pos.x + player->dir.x * SPD)] == '0')
 	{
-		player->pos.x -= player->dir.x * SPD;
-		player->pos.y -= player->dir.y * SPD;
+		player->pos.x += player->dir.x * SPD;
+		player->pos.y += player->dir.y * SPD;
 
 	}
 	// if (scene->map.tab_map[(int)(y - player->dir.y * SPD)][(int)x] == '0')
@@ -78,10 +78,10 @@ int	key_down(t_scene *scene, t_player *player)
 
 int	key_up(t_scene *scene, t_player *player)
 {
-	if (scene->map.tab_map[(int)(player->pos.y + player->dir.y * SPD)][(int)(player->pos.x + player->dir.x * SPD)] == '0')
+	if (scene->map.tab_map[(int)(player->pos.y - player->dir.y * SPD)][(int)(player->pos.x - player->dir.x * SPD)] == '0')
 	{
-		player->pos.x += player->dir.x * SPD;
-		player->pos.y += player->dir.y * SPD;
+		player->pos.x -= player->dir.x * SPD;
+		player->pos.y -= player->dir.y * SPD;
 
 	}
 	// if (scene->map.tab_map[(int)(y + player->dir.y * SPD)][(int)x] == '0')

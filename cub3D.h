@@ -45,12 +45,32 @@
 
 typedef struct s_tex
 {
-	void	*img;
+	void	*ptr;
+	void	*data;
+	int		*tex_data;
+	float	step;
+	float	texpos;
 	int		h;
 	int		w;
-	void	*addr;
+	int		x;
+	int		y;
+	char	*addr;
 	int		color;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }		t_tex;
+
+typedef struct	s_img {
+	void	*img;
+	void	*map;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		w;
+	int		h;
+}				t_img;
 
 typedef struct s_mlx
 {
@@ -63,7 +83,7 @@ typedef struct s_vec2
 {
 	float	x;
 	float	y;
-} t_vec2;
+}		t_vec2;
 
 typedef struct s_player
 {
@@ -72,7 +92,7 @@ typedef struct s_player
 	int		start;
 	int		end;
 	int		lineh;
-	int		color;
+	char	color_card;
 	int		stepx;
 	int		stepy;
 	int		side;
@@ -80,7 +100,6 @@ typedef struct s_player
 	float		rposx;
 	float		rposy;
 	float		wallx;
-	t_tex		*tex;
 	t_vec2		pos; 
 	t_vec2		dir;
 	t_vec2		raydir;
@@ -111,6 +130,12 @@ typedef struct s_asset
 	int			nbr_NSWE;
 	int			int_color;
 	int			nbr_color;
+
+	//textures
+	t_img		*tex_s;
+	t_img		*tex_n;
+	t_img		*tex_w;
+	t_img		*tex_e;
 }		t_asset;
 typedef struct s_map
 {
@@ -121,14 +146,6 @@ typedef struct s_map
 	int			y;
 }		t_map;
 
-typedef struct	s_img {
-	void	*img;
-	void	*map;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_img;
 
 // typedef	struct s_img
 // {
@@ -142,8 +159,10 @@ typedef struct s_scene
 	t_map		map;
 	t_asset		asset;
 	t_player	player;
-	t_img		img;
+	t_img		*img;
 	t_mlx		mlx;
+
+	t_tex		ptr;
 } t_scene;
 
 /*
@@ -229,6 +248,7 @@ int		init_pos_player_map(t_scene *scene, int y, int x, int size);
 
 ////////// WIN_MINIMAP ///
 int		mini_map_init(t_scene *scene);
+int		mxl_texture_put(t_scene *scene, int x, int y, int color);
 int		open_win(t_scene *scene);
 int		mxl_pixel_put(t_scene *scene, int x, int y, int color);
 int		mini_map_pixel(t_scene *scene, int x, int y, int floor, int size);
@@ -260,8 +280,24 @@ int		init_delta(t_scene *scene);
 int		dda_hit(t_scene *scene);
 int		init_ray_dir(t_scene *scene, int x);
 int		texture(t_scene *scene);
-int		init_texture(t_scene *scene);
+int		convert_rvb_to_hexa(t_scene *scene);
+void	tex_to_pixel(t_img *tex, t_scene *scene);
+int		load_tex(t_scene *scene);
+int		init_tex_width(t_scene *scene);
+int		init_tex_height(t_scene *scene);
+t_tex	*new_texture(t_scene *scene, char *path);
 
+int		wall(t_scene *scene);
+
+//caca
+t_img	*ftmlx_new_xpm_img(void *mlx, char *file);
+void	ftmlx_free_img(void *mlx, t_img *img);
+t_img	*ftmlx_new_img(void *mlx, int width, int height);
+
+//assets
+void	init_assets(t_asset *assets);
+int	load_assets(void *mlx, t_asset *assets);
+void	free_assets(void *mlx, t_asset *assets);
 
 
 #endif
