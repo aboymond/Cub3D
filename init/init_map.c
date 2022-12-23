@@ -6,7 +6,7 @@
 /*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 15:40:30 by aboymond          #+#    #+#             */
-/*   Updated: 2022/12/23 15:56:41 by aboymond         ###   ########.fr       */
+/*   Updated: 2022/12/23 18:14:36 by aboymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	map_is_close(t_scene *scene)
 
 int	check_wall(char **tab, int i, int j)
 {
+	if ((i + 1) > (ft_tablen(tab) - 1) && utils_c_w(tab[i][j], 0) == 1)
+		return (p_error("Error:\n\tThe map is not closed"));
 	if (tab[0][j] == '0' || tab[ft_tablen(tab) - 1][j] == '0')
 		return (p_error("Error:\n\tThe map is not closed 0"));
 	else if (tab[i][0] == '0' || tab[i][(int)ft_strlen(tab[i] - 1)] == '0')
@@ -109,7 +111,7 @@ int	check_wall(char **tab, int i, int j)
 	{
 		return (p_error("Error:\n\tThe map is not closed 4"));
 	}
-	else if (utils_c_w(tab[i][j], 0) == 1 || tab[i][j] == '0')
+	else if ((utils_c_w(tab[i][j], 0) == 1 || tab[i][j] == '0'))
 	{
 		if ((utils_c_w(tab[i - 1][j], 1) == 1
 			|| utils_c_w(tab[i + 1][j], 1) == 1)
