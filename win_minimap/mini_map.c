@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:38:26 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 16:24:30 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 int	mxl_pixel_put(t_scene *scene, int x, int y, int color)
@@ -13,38 +25,29 @@ int	mxl_pixel_put(t_scene *scene, int x, int y, int color)
 	return (0);
 }
 
-int	mini_map_pixel(t_scene *scene, int x, int y, int floor, int size)
+int	mini_map_pixel(t_scene *scene, int x, int y, int floor)
 {
 	int	i;
 	int	j;
 
-	i = (x * size);
-	j = (y * size);
+	i = (x * scene->map.map_size);
+	j = (y * scene->map.map_size);
 	if (floor == 1)
 	{
-		while (j < ((y * size) + size))
+		while (j++ < ((y * scene->map.map_size) + scene->map.map_size))
 		{
-			while (i < ((x * size) + size))
-			{
+			while (i++ < ((x * scene->map.map_size) + scene->map.map_size))
 				mxl_pixel_put(scene, i, j, WHI);
-				i++;
-			}
-			i = (x * size);
-			j++;
+			i = (x * scene->map.map_size);
 		}
-		mini_map_pixel_border(scene, x, y, size);
 	}
 	else
 	{
-		while (j < ((y * size) + size))
+		while (j++ < ((y * scene->map.map_size) + scene->map.map_size))
 		{
-			while (i < ((x * size) + size))
-			{
+			while (i++ < ((x * scene->map.map_size) + scene->map.map_size))
 				mxl_pixel_put(scene, i, j, GRE);
-				i++;
-			}
-			i = (x * size);
-			j++;
+			i = (x * scene->map.map_size);
 		}
 	}
 	return (0);

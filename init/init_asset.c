@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_asset.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:40:42 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 16:35:17 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 int	init_asset(char *args, t_scene *scene)
@@ -18,6 +30,13 @@ int	init_asset(char *args, t_scene *scene)
 		return (1);
 	}
 	scene->asset.cmpt_asset_tab++;
+	if (init_asset_2(trimmed, scene, tmp, fd) == 1)
+		return (1);
+	return (0);
+}
+
+int	init_asset_2(char *trimmed, t_scene *scene, char *tmp, int fd)
+{
 	while (trimmed)
 	{
 		free(trimmed);
@@ -41,7 +60,7 @@ int	check_asset(t_scene *scene, char *line)
 {
 	if (init_asset_tab(scene, line) == 1)
 	{
-		if (!scene->asset.asset_color || !scene->asset.asset_NSWE)
+		if (!scene->asset.asset_color || !scene->asset.asset_nswe)
 		{
 			p_error("Error: \n\tMap asset = NULL !");
 		}
@@ -54,13 +73,13 @@ int	init_asset_tab(t_scene *scene, char *line)
 {
 	int	i;
 
-	i = 0;
-	while (line[i])
+	i = -1;
+	while (line[++i])
 	{
 		if (ft_strchr("NSWE", line[i]))
 		{
-			scene->asset.asset_NSWE[scene->asset.int_NSWE] = ft_strdup(line);
-			scene->asset.int_NSWE++;
+			scene->asset.asset_nswe[scene->asset.int_nswe] = ft_strdup(line);
+			scene->asset.int_nswe++;
 			scene->asset.cmpt_asset++;
 			return (0);
 		}
@@ -72,10 +91,7 @@ int	init_asset_tab(t_scene *scene, char *line)
 			return (0);
 		}
 		if (ft_strchr("01", line[i]))
-		{
 			return (1);
-		}
-		i++;
 	}
 	return (0);
 }

@@ -1,5 +1,17 @@
-#ifndef	CUBE3D_H
-# define CUBE3D_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:39:04 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 17:50:41 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "libft/libft.h"
 
@@ -11,8 +23,6 @@
 # define WHI 0x00FFFFFF
 # define WIN_X 1920
 # define WIN_Y 1080
-# define texWidth 64
-# define texHeight 64
 # define SPD 0.1
 # define SPDR 1
 # define FOV 0.90
@@ -61,7 +71,7 @@ typedef struct s_tex
 	int		endian;
 }		t_tex;
 
-typedef struct	s_img {
+typedef struct s_img {
 	void	*img;
 	void	*map;
 	char	*addr;
@@ -87,20 +97,20 @@ typedef struct s_vec2
 
 typedef struct s_player
 {
-	int		x_f;
-	int		y_f;
-	int		start;
-	int		end;
-	int		lineh;
-	char	color_card;
-	int		stepx;
-	int		stepy;
-	int		side;
-	int		texx;
+	int			x_f;
+	int			y_f;
+	int			start;
+	int			end;
+	int			lineh;
+	char		color_card;
+	int			stepx;
+	int			stepy;
+	int			side;
+	int			texx;
 	float		rposx;
 	float		rposy;
 	float		wallx;
-	t_vec2		pos; 
+	t_vec2		pos;
 	t_vec2		dir;
 	t_vec2		raydir;
 	t_vec2		plane;
@@ -116,7 +126,7 @@ typedef struct s_player
 
 typedef struct s_asset
 {
-	char		**asset_NSWE;
+	char		**asset_nswe;
 	char		**tab_path;
 	char		**tab_color;
 	int			*floor_color;
@@ -126,12 +136,11 @@ typedef struct s_asset
 	int			ceil_hex;
 	int			cmpt_asset;
 	int			cmpt_asset_tab;
-	int			int_NSWE;
-	int			nbr_NSWE;
+	int			int_nswe;
+	int			nbr_nswe;
 	int			int_color;
 	int			nbr_color;
 
-	//textures
 	t_img		*tex_s;
 	t_img		*tex_n;
 	t_img		*tex_w;
@@ -155,27 +164,7 @@ typedef struct s_scene
 	t_mlx		mlx;
 
 	t_tex		ptr;
-} t_scene;
-
-/*
-manage_assets(t_struct *asset)
-{
-	asset.int_color = 0;
-}
-t_map *map;
-map.asset.int_color = 1;
-manage_assets(&map->assets)
-//int_color == 0
-
-
-typedef struct	s_map
-{
-	char **data;
-	int	height;
-	int widht;
-} t_map;
-*/
-
+}	t_scene;
 
 /////////// INIT ///////////
 void	init(t_scene *scene);
@@ -189,12 +178,14 @@ void	callocmap(t_scene *scene, int haut);
 int		compt_asset(char *args, t_scene *scene);
 int		nb_of_asset(char *line, t_asset *asset);
 int		malloc_asset(t_asset *asset);
+int		init_asset_2(char *trimmed, t_scene *scene, char *tmp, int fd);
 
 ////////// INIT MAP //////////
-int		compt_map(char *args, t_scene *scene);
+void	compt_map(char *args, t_scene *scene);
 void	init_tab_map(char *args, t_scene *scene);
 int		map_is_close(t_scene *scene);
 int		check_wall(char **tab, int i, int j);
+void	compt_map_2(t_scene *scene, int haut, char *args);
 
 ////////// ERROR //////////
 int		erreur_args(int argc, char **argv);
@@ -202,18 +193,18 @@ int		check_arg(char *c);
 int		p_error(char *error);
 
 ////////// ASSET //////////
-int 	valid_p_cardinal_name(char *str, int i);
+int		valid_p_cardinal_name(char *str, int i);
 int		asset_p_cardinal(t_asset *asset);
-int 	asset_color(t_asset *asset);
+int		asset_color(t_asset *asset);
 int		name_is_valid(char *str, int i);
 int		asset_is_valid(t_asset *asset);
 int		valid_color_name(char *str, int i);
 int		value_color(t_asset *asset);
-int 	valid_color(char *str);
+int		valid_color(char *str);
 int		color_into_d_tab(char *str);
 int		is_a_digit(char **trim_str);
 int		color_rvb(char **trim_str);
-int 	count_nbr_color(char **tab_color);
+int		count_nbr_color(char **tab_color);
 int		path_not_valid(t_asset *asset);
 void	delete_p_cardinal(char **tab_path, t_asset *asset);
 int		two_same_path(char **path);
@@ -223,29 +214,27 @@ void	create_tab_integer_floor(char *str, t_asset *asset);
 int		trim_space_in_path(char	**path);
 int		valid_p_cardinal_name2(char *str, int i);
 
-
 ////////// PLAYER /////////
 int		init_pos_player(t_scene *scene, int y, int x);
 int		print_player(t_scene *scene, int x, int y);
 int		key_move(int keycode, t_scene *scene);
 int		search_player(t_scene *scene);
-
-//int		del_old_print_player(t_scene *scene, int x, int y);
 int		key_right(t_player *player);
 int		key_left(t_player *player);
 int		key_down(t_scene *scene, t_player *player);
 int		key_up(t_scene *scene, t_player *player);
+int		l_right(t_scene *scene, t_player *player);
+int		l_left(t_scene *scene, t_player *player);
 int		key_esc(int keycode, t_scene *scene);
 int		key_move2(int keycode, t_scene *scene);
 int		init_pos_player_map(t_scene *scene, int y, int x, int size);
-//int		print_dir(t_scene *scene, int x, int y);
 
 ////////// WIN_MINIMAP ///
 int		mini_map_init(t_scene *scene);
 int		mxl_texture_put(t_scene *scene, int x, int y, int color);
 int		open_win(t_scene *scene);
 int		mxl_pixel_put(t_scene *scene, int x, int y, int color);
-int		mini_map_pixel(t_scene *scene, int x, int y, int floor, int size);
+int		mini_map_pixel(t_scene *scene, int x, int y, int floor);
 int		mini_map_pixel_border(t_scene *scene, int x, int y, int size);
 int		mlx_open_win(t_scene *scene);
 int		mlx_open_win_map(t_scene *scene);
@@ -262,16 +251,17 @@ void	tab_free(char *str);
 int		comp_size_len(t_scene *scene, char *line);
 int		cpy_map_to_tab(t_scene *scene, char *line, int i);
 int		utils_c_w(char c, int car);
+int		map_is_close_2(t_scene *scene, int j, int i, int comp);
 
-/***
- **TEST
- ***/
+//////////TEST //////
 int		init_ray(t_scene *scene);
 int		init_miniray(t_scene *scene);
 int		draw_wall(t_scene *scene, int x);
 int		init_height_wall(t_scene *scene);
 int		init_color_wall(t_scene *scene);
 int		init_sdist(t_scene *scene);
+void	init_sdist_2(t_scene *scene);
+void	init_perpwall(t_scene *scene);
 int		init_delta(t_scene *scene);
 int		dda_hit(t_scene *scene);
 int		init_ray_dir(t_scene *scene, int x);
@@ -285,7 +275,6 @@ t_tex	*new_texture(t_scene *scene, char *path);
 
 int		wall(t_scene *scene);
 
-//caca
 t_img	*ftmlx_new_xpm_img(void *mlx, char *file);
 void	ftmlx_free_img(void *mlx, t_img *img);
 t_img	*ftmlx_new_img(void *mlx, int width, int height);
@@ -294,5 +283,6 @@ t_img	*ftmlx_new_img(void *mlx, int width, int height);
 void	init_assets(t_asset *assets);
 int		load_assets(void *mlx, t_asset *assets);
 void	free_assets(void *mlx, t_asset *assets);
+int		ft_close(void);
 
 #endif

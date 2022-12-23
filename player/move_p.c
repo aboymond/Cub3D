@@ -1,22 +1,33 @@
-#include "../cub3D.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_p.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:40:05 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 17:47:24 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	key_esc(int keycode, t_scene *scene)
-{
-	if (keycode == ESC)
-		free_main(scene);
-	return (0);
-}
+#include "../cub3D.h"
 
 int	key_move(int keycode, t_scene *scene)
 {
+	if (keycode == ESC)
+		ft_close();
 	if (keycode == RIGHT_KEY)
 		key_right(&scene->player);
 	if (keycode == LEFT_KEY)
 		key_left(&scene->player);
-	if (keycode == UP_KEY)
+	if (keycode == W_KEY)
 		key_up(scene, &scene->player);
-	if (keycode == DOWN_KEY)
+	if (keycode == S_KEY)
 		key_down(scene, &scene->player);
+	if (keycode == D_KEY)
+		l_right(scene, &scene->player);
+	if (keycode == A_KEY)
+		l_left(scene, &scene->player);
 	return (0);
 }
 

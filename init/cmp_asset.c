@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cmp_asset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:40:47 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 16:35:32 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 int	compt_asset(char *args, t_scene *scene)
@@ -18,7 +30,7 @@ int	compt_asset(char *args, t_scene *scene)
 			break ;
 		}
 	}
-	if (scene->asset.nbr_NSWE != 4 || scene->asset.nbr_color != 2)
+	if (scene->asset.nbr_nswe != 4 || scene->asset.nbr_color != 2)
 		return (p_error("Error:\n\tInvalid assets"));
 	malloc_asset(&scene->asset);
 	close (fd);
@@ -36,7 +48,7 @@ int	nb_of_asset(char *line, t_asset *asset)
 	{
 		if (ft_strchr("NSWE", line[i]))
 		{
-			asset->nbr_NSWE++;
+			asset->nbr_nswe++;
 			return (0);
 		}
 		else if (ft_strchr("FC", line[i]))
@@ -53,6 +65,6 @@ int	nb_of_asset(char *line, t_asset *asset)
 int	malloc_asset(t_asset *asset)
 {
 	asset->asset_color = ft_calloc(asset->nbr_color + 1, sizeof(char *));
-	asset->asset_NSWE = ft_calloc(asset->nbr_NSWE + 1, sizeof(char *));
+	asset->asset_nswe = ft_calloc(asset->nbr_nswe + 1, sizeof(char *));
 	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_minimap.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:38:43 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 16:21:24 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 int	search_player(t_scene *scene)
@@ -40,12 +52,12 @@ int	mini_map_init(t_scene *scene)
 			if (scene->map.tab_map[y][x] == ' ')
 				scene->map.tab_map[y][x] = '1';
 			if (scene->map.tab_map[y][x] == '1')
-				mini_map_pixel(scene, x, y, 1, scene->map.map_size);
+				mini_map_pixel(scene, x, y, 1);
 			if (scene->map.tab_map[y][x] == '0')
-				mini_map_pixel(scene, x, y, 0, scene->map.map_size);
+				mini_map_pixel(scene, x, y, 0);
 			if (utils_c_w(scene->map.tab_map[y][x], 0) == 1)
 			{
-				mini_map_pixel(scene, x, y, 0, scene->map.map_size);
+				mini_map_pixel(scene, x, y, 0);
 				init_pos_player_map(scene, y, x, scene->map.map_size);
 				scene->map.tab_map[y][x] = '0';
 			}

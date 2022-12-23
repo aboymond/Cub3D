@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_path_is_valid.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:36:01 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 16:35:32 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 int	path_not_valid(t_asset *asset)
@@ -6,11 +18,11 @@ int	path_not_valid(t_asset *asset)
 	char	**tab_path;
 
 	i = 0;
-	tab_path = ft_calloc(asset->nbr_NSWE + 1, sizeof(char *));
-	while (asset->asset_NSWE[i])
+	tab_path = ft_calloc(asset->nbr_nswe + 1, sizeof(char *));
+	while (asset->asset_nswe[i])
 	{
-		tab_path[i] = ft_strdup(asset->asset_NSWE[i]);
-		free(asset->asset_NSWE[i]);
+		tab_path[i] = ft_strdup(asset->asset_nswe[i]);
+		free(asset->asset_nswe[i]);
 		i++;
 	}
 	delete_p_cardinal(tab_path, asset);
@@ -25,7 +37,7 @@ void	delete_p_cardinal(char **tab_path, t_asset *asset)
 	int	i;
 
 	i = 0;
-	asset->tab_path = ft_calloc(asset->nbr_NSWE + 1, sizeof(char *));
+	asset->tab_path = ft_calloc(asset->nbr_nswe + 1, sizeof(char *));
 	while (tab_path[i])
 	{
 		asset->tab_path[i] = ft_substr(tab_path[i], 3, ft_strlen(tab_path[i]));

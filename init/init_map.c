@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:40:30 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 15:56:41 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
-int	compt_map(char *args, t_scene *scene)
+void	compt_map(char *args, t_scene *scene)
 {
 	char	*tmp;
 	int		fd;
@@ -26,9 +38,13 @@ int	compt_map(char *args, t_scene *scene)
 		haut++;
 	}
 	close(fd);
+	compt_map_2(scene, haut, args);
+}
+
+void	compt_map_2(t_scene *scene, int haut, char *args)
+{
 	callocmap(scene, haut);
 	init_tab_map(args, scene);
-	return (0);
 }
 
 void	init_tab_map(char *args, t_scene *scene)
@@ -71,19 +87,7 @@ int	map_is_close(t_scene *scene)
 	while (++i < ft_tablen(scene->map.tab_map))
 	{
 		j = -1;
-		while (++j < (int)ft_strlen(scene->map.tab_map[i]))
-		{
-			if (utils_c_w(scene->map.tab_map[i][j], 0) == 1)
-			{
-				scene->player.cardi = scene->map.tab_map[i][j];
-				comp++;
-				scene->player.pos.x = j;
-				scene->player.pos.y = i;
-				if (comp > 1)
-					return (p_error("Error :\n\tTo many player"));
-			}
-			check_wall(scene->map.tab_map, i, j);
-		}
+		comp = map_is_close_2(scene, j, i, comp);
 	}
 	if (comp < 1)
 		return (p_error("Error :\n\tNo player"));

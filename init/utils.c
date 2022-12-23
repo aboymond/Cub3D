@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:40:23 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 15:57:18 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 int	comp_size_len(t_scene *scene, char *line)
@@ -48,4 +60,22 @@ int	utils_c_w(char c, int car)
 			return (1);
 	}
 	return (0);
+}
+
+int	map_is_close_2(t_scene *scene, int j, int i, int comp)
+{
+	while (++j < (int)ft_strlen(scene->map.tab_map[i]))
+	{
+		if (utils_c_w(scene->map.tab_map[i][j], 0) == 1)
+		{
+			scene->player.cardi = scene->map.tab_map[i][j];
+			comp++;
+			scene->player.pos.x = j;
+			scene->player.pos.y = i;
+			if (comp > 1)
+				return (p_error("Error :\n\tTo many player"));
+		}
+		check_wall(scene->map.tab_map, i, j);
+	}
+	return (comp);
 }

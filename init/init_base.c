@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_base.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 15:40:37 by aboymond          #+#    #+#             */
+/*   Updated: 2022/12/23 16:35:32 by aboymond         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 void	init(t_scene *scene)
@@ -32,8 +44,8 @@ void	init_asset_var(t_scene *scene)
 	scene->asset.cmpt_asset_tab = 0;
 	scene->asset.int_color = 0;
 	scene->asset.nbr_color = 0;
-	scene->asset.int_NSWE = 0;
-	scene->asset.nbr_NSWE = 0;
+	scene->asset.int_nswe = 0;
+	scene->asset.nbr_nswe = 0;
 	init_assets(&scene->asset);
 }
 
