@@ -14,7 +14,6 @@ int	load_assets(void *mlx, t_asset *assets)
 	assets->tex_s = ftmlx_new_xpm_img(mlx, assets->tab_path[1]);
 	assets->tex_w = ftmlx_new_xpm_img(mlx, assets->tab_path[2]);
 	assets->tex_e = ftmlx_new_xpm_img(mlx, assets->tab_path[3]);
-
 	if (assets->tex_n == NULL || assets->tex_e == NULL
 		|| assets->tex_s == NULL || assets->tex_w == NULL)
 	{

@@ -2,8 +2,8 @@
 
 int	comp_size_len(t_scene *scene, char *line)
 {
-	int	i; 
-	
+	int	i;
+
 	i = 0;
 	i = (int)ft_strlen(line);
 	if (i > scene->map.len_map)
@@ -32,7 +32,6 @@ int	cpy_map_to_tab(t_scene *scene, char *line, int i)
 		j++;
 	}
 	scene->map.tab_map[i][j - 1] = '\0';
-	//printf("\n");
 	return (0);
 }
 

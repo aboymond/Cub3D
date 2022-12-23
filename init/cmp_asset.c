@@ -2,8 +2,8 @@
 
 int	compt_asset(char *args, t_scene *scene)
 {
-	char *tmp;
-	int	fd;
+	char	*tmp;
+	int		fd;
 
 	fd = open(args, O_RDONLY);
 	tmp = get_next_line(fd);

@@ -2,7 +2,7 @@
 
 int	init_ray(t_scene *scene)
 {
-	int		x;
+	int	x;
 
 	x = -1;
 	scene->player.side = 0;
@@ -14,24 +14,11 @@ int	init_ray(t_scene *scene)
 		dda_hit(scene);
 		init_height_wall(scene);
 		texture(scene);
-		
 		convert_rvb_to_hexa(scene);
-		
 		draw_wall(scene, x);
-		// if (side == 0)
-		// 	wallx = scene->player.pos.y + scene->player.perpwdist * scene->player.dir.y;
-		// else
-		// 	wallx = scene->player.pos.x + scene->player.perpwdist * scene->player.dir.x;
-		// if (side == 0 && scene->player.dir.x > 0)
-		// 	texx = texWidth - texx - 1;
-		// if (side == 1 && scene->player.dir.x < 0)
-		// 	texx = texWidth - texx - 1;
-
-		// step = 1.0 * texHeight / scene->player.lineh;
 	}
 	return (0);
 }
-
 
 int	init_ray_dir(t_scene *scene, int x)
 {
@@ -65,47 +52,50 @@ int	init_sdist(t_scene *scene)
 	scene->player.stepx = 0;
 	scene->player.stepy = 0;
 	scene->player.perpwdist = 0;
-		if (scene->player.raydir.x < 0)
-		{
-			scene->player.stepx = -1;
-			scene->player.sdist.x = (scene->player.rposx
+	if (scene->player.raydir.x < 0)
+	{
+		scene->player.stepx = -1;
+		scene->player.sdist.x = (scene->player.rposx
 				- scene->player.x_f) * scene->player.delta.x;
-		}
-		else
-		{
-			scene->player.stepx = 1;
-			scene->player.sdist.x = (scene->player.x_f + 1.0 - scene->player.rposx) * scene->player.delta.x;
-		}
-		if (scene->player.raydir.y < 0)
-		{
-			scene->player.stepy = -1;
-			scene->player.sdist.y = (scene->player.rposy
+	}
+	else
+	{
+		scene->player.stepx = 1;
+		scene->player.sdist.x = (scene->player.x_f + 1.0 - scene->player.rposx) * scene->player.delta.x;
+	}
+	if (scene->player.raydir.y < 0)
+	{
+		scene->player.stepy = -1;
+		scene->player.sdist.y = (scene->player.rposy
 				- scene->player.y_f) * scene->player.delta.y;
-		}
-		else
-		{
-			scene->player.stepy = 1;
-			scene->player.sdist.y = (scene->player.y_f + 1.0 - scene->player.rposy) * scene->player.delta.y;
-		}
-		return (0);
+	}
+	else
+	{
+		scene->player.stepy = 1;
+		scene->player.sdist.y = (scene->player.y_f + 1.0 - scene->player.rposy)
+			* scene->player.delta.y;
+	}
+	return (0);
 }
 
 int	init_color_wall(t_scene *scene)
 {
-	// printf("dir x = %f, dir y = %f\n",scene->player.dir.x, scene->player.dir.y);
-	// printf("ray dir x = %f, ray dir y = %f\n",scene->player.raydir.x, scene->player.raydir.y);
 	if (scene->player.side == 0)
 	{
-		if (scene->player.stepx > 0 && scene->player.x_f > (int)scene->player.rposx && scene->player.side == 0)
+		if (scene->player.stepx > 0 && scene->player.x_f
+			> (int)scene->player.rposx && scene->player.side == 0)
 			scene->player.color_card = 'W';
-		if (scene->player.stepx < 0 && scene->player.x_f < (int)scene->player.rposx && scene->player.side == 0)
+		if (scene->player.stepx < 0 && scene->player.x_f
+			< (int)scene->player.rposx && scene->player.side == 0)
 			scene->player.color_card = 'E';
 	}
 	if (scene->player.side == 1)
 	{
-		if (scene->player.stepy > 0 && scene->player.y_f > (int)scene->player.rposy && scene->player.side == 1)
+		if (scene->player.stepy > 0 && scene->player.y_f
+			> (int)scene->player.rposy && scene->player.side == 1)
 			scene->player.color_card = 'S';
-		if (scene->player.stepy < 0 && scene->player.y_f < (int)scene->player.rposy && scene->player.side == 1)
+		if (scene->player.stepy < 0 && scene->player.y_f
+			< (int)scene->player.rposy && scene->player.side == 1)
 			scene->player.color_card = 'N';
 	}
 	return (0);
@@ -113,7 +103,7 @@ int	init_color_wall(t_scene *scene)
 
 int	dda_hit(t_scene *scene)
 {
-	int hit;
+	int	hit;
 
 	hit = 0;
 	while (hit == 0)
@@ -123,7 +113,6 @@ int	dda_hit(t_scene *scene)
 			scene->player.sdist.x += scene->player.delta.x;
 			scene->player.x_f += scene->player.stepx;
 			scene->player.side = 0;
-
 		}
 		else
 		{
@@ -132,27 +121,22 @@ int	dda_hit(t_scene *scene)
 			scene->player.side = 1;
 		}
 		if (scene->map.tab_map[scene->player.y_f][scene->player.x_f] == '1')
-		{
-			// printf("map car = [%c] %s\n", scene->map.tab_map[scene->player.y_f][scene->player.x_f], scene->map.tab_map[scene->player.y_f]);
 			hit = 1;
-		}
 	}
 	init_color_wall(scene);
 	if (scene->player.side == 0)
-		scene->player.perpwdist = fabs((scene->player.x_f - (scene->player.rposx) + (1 - scene->player.stepx) / 2) / (scene->player.raydir.x));
+		scene->player.perpwdist = fabs((scene->player.x_f
+					- (scene->player.rposx) + (1 - scene->player.stepx) / 2)
+				/ (scene->player.raydir.x));
 	if (scene->player.side == 1)
-		scene->player.perpwdist = fabs((scene->player.y_f - (scene->player.rposy) + (1 - scene->player.stepy) / 2) / (scene->player.raydir.y));
-	
+		scene->player.perpwdist = fabs((scene->player.y_f
+					- (scene->player.rposy) + (1 - scene->player.stepy) / 2)
+				/ (scene->player.raydir.y));
 	return (0);
 }
 
 int	init_height_wall(t_scene *scene)
 {
-	// if (scene->player.side == 0)
-	// 	scene->player.perpwdist = scene->player.sdist.x - scene->player.delta.x ;
-	// else
-	// 	scene->player.perpwdist = scene->player.sdist.y - scene->player.delta.y ;
-		// printf("prep u dist = %f\n", scene->player.perpwdist);
 	scene->player.lineh = fabs(WIN_Y / scene->player.perpwdist);
 	scene->player.lineh -= WIN_Y / 50;
 	scene->player.start = (-1 * (scene->player.lineh) / 2 + WIN_Y / 2);
@@ -188,31 +172,34 @@ int	draw_wall(t_scene *scene, int x)
 	return (0);
 }
 
-int texture(t_scene *scene)
+int	texture(t_scene *scene)
 {
 	float	wallx;
 
 	if (scene->player.side == 0)
-		wallx = scene->player.rposy + scene->player.perpwdist * scene->player.raydir.y;
+		wallx = scene->player.rposy + scene->player.perpwdist
+			* scene->player.raydir.y;
 	else
-		wallx = scene->player.rposx + scene->player.perpwdist * scene->player.raydir.x;
+		wallx = scene->player.rposx + scene->player.perpwdist
+			* scene->player.raydir.x;
 	wallx -= floor(wallx);
 	scene->ptr.x = (int)(wallx * (float)64);
 	if (scene->player.side == 0 && scene->player.raydir.x > 0)
 		scene->ptr.x = 64 - scene->ptr.x - 1;
 	if (scene->player.side == 1 && scene->player.raydir.y < 0)
 		scene->ptr.x = 64 - scene->ptr.x - 1;
-
 	scene->ptr.step = 1.0 * 64 / scene->player.lineh;
-	scene->ptr.texpos = (scene->player.start - WIN_Y / 2 + scene->player.lineh / 2) * scene->ptr.step - 1;
-	
+	scene->ptr.texpos = (scene->player.start - WIN_Y / 2
+			+ scene->player.lineh / 2) * scene->ptr.step - 1;
 	return (0);
 }
 
-int convert_rvb_to_hexa(t_scene *scene)
+int	convert_rvb_to_hexa(t_scene *scene)
 {
-	scene->asset.floor_hex = 256 * 256 * scene->asset.floor_color[0] + 256 * scene->asset.floor_color[1] + scene->asset.floor_color[2];
-	scene->asset.ceil_hex = 256 * 256 * scene->asset.ceiling_color[0] + 256 * scene->asset.ceiling_color[1] + scene->asset.ceiling_color[2];
+	scene->asset.floor_hex = 256 * 256 * scene->asset.floor_color[0] + 256
+		* scene->asset.floor_color[1] + scene->asset.floor_color[2];
+	scene->asset.ceil_hex = 256 * 256 * scene->asset.ceiling_color[0] + 256
+		* scene->asset.ceiling_color[1] + scene->asset.ceiling_color[2];
 	return (0);
 }
 
@@ -220,12 +207,15 @@ int	*ftmlx_img_get_pxl(t_img *img, int x, int y)
 {
 	if (img->h <= y || img->w <= x || x < 0 || y < 0)
 		return (NULL);
-	return ((int *)(img->addr + (img->line_length * y + x * (img->bits_per_pixel / 8))));
+	return ((int *)(img->addr + (img->line_length * y + x
+			* (img->bits_per_pixel / 8))));
 }
 
 void	tex_to_pixel(t_img *tex, t_scene *scene)
 {
-	int *ptr = ftmlx_img_get_pxl(tex, scene->ptr.x, scene->ptr.y);
+	int	*ptr;
+
+	ptr = ftmlx_img_get_pxl(tex, scene->ptr.x, scene->ptr.y);
 	if (ptr == NULL)
 		scene->ptr.color = BLU;
 	else

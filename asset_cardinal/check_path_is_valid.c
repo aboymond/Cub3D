@@ -2,33 +2,27 @@
 
 int	path_not_valid(t_asset *asset)
 {
-	int 	i;
-	char 	**tab_path;
+	int		i;
+	char	**tab_path;
 
 	i = 0;
 	tab_path = ft_calloc(asset->nbr_NSWE + 1, sizeof(char *));
 	while (asset->asset_NSWE[i])
 	{
-		//printf("asset->asset_NSWE[i] = %p\n", asset->asset_NSWE[i]);
 		tab_path[i] = ft_strdup(asset->asset_NSWE[i]);
-		//printf("tab_path[i] = %p\n", tab_path[i]);
 		free(asset->asset_NSWE[i]);
 		i++;
 	}
 	delete_p_cardinal(tab_path, asset);
 	if (two_same_path(asset->tab_path) == -1)
-	{
-		//free_d_tab(tab_path);
 		return (p_error("Error:\n\tthere is same path"));
-	}
 	trim_space_in_path(asset->tab_path);
 	return (0);
 }
 
 void	delete_p_cardinal(char **tab_path, t_asset *asset)
 {
-	//char	*tmp;
-	int		i;
+	int	i;
 
 	i = 0;
 	asset->tab_path = ft_calloc(asset->nbr_NSWE + 1, sizeof(char *));
@@ -41,7 +35,7 @@ void	delete_p_cardinal(char **tab_path, t_asset *asset)
 	free(tab_path);
 }
 
-int two_same_path(char **path)
+int	two_same_path(char **path)
 {
 	int	i;
 	int	j;
@@ -75,12 +69,11 @@ int	trim_space_in_path(char	**path)
 		free(path[i]);
 		path[i] = ft_strtrim(tmp, " \n\t\v\r");
 		free(tmp);
-		printf("path [%d], %s\n", i, path[i]);
 		fd = open(path[i], O_RDONLY);
 		if (fd == -1)
 		{
 			close (fd);
-			return(p_error("texture not valid\n"));
+			return (p_error("texture not valid\n"));
 		}
 		close(fd);
 		i++;

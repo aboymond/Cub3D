@@ -33,7 +33,8 @@ t_img	*ftmlx_new_xpm_img(void *mlx, char *file)
 		free(img);
 		return (NULL);
 	}
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
 	return (img);
 }
 

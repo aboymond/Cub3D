@@ -2,7 +2,6 @@
 
 int	asset_color(t_asset *asset)
 {
-
 	int		i;
 	int		j;
 	char	*tmp;

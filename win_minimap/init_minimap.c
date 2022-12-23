@@ -12,7 +12,7 @@ int	search_player(t_scene *scene)
 	scene->map.map_size = size;
 	while (y < ft_tablen(scene->map.tab_map))
 	{
-		while (x < scene->map.len_map - 1/* || scene->map.tab_map[y][x]*/)
+		while (x < scene->map.len_map - 1)
 		{
 			if (utils_c_w(scene->map.tab_map[y][x], 0) == 1)
 			{
@@ -31,11 +31,11 @@ int	mini_map_init(t_scene *scene)
 	int	x;
 	int	y;
 
-	x = 0;
-	y = 0;
-	while (y < ft_tablen(scene->map.tab_map))
+	x = -1;
+	y = -1;
+	while (++y < ft_tablen(scene->map.tab_map))
 	{
-		while (x < scene->map.len_map - 1/* || scene->map.tab_map[y][x]*/)
+		while (++x < scene->map.len_map - 1)
 		{
 			if (scene->map.tab_map[y][x] == ' ')
 				scene->map.tab_map[y][x] = '1';
@@ -49,10 +49,8 @@ int	mini_map_init(t_scene *scene)
 				init_pos_player_map(scene, y, x, scene->map.map_size);
 				scene->map.tab_map[y][x] = '0';
 			}
-			x++;
 		}
-		x = 0;
-		y++;
+		x = -1;
 	}
 	return (0);
 }

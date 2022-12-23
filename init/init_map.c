@@ -8,12 +8,11 @@ int	compt_map(char *args, t_scene *scene)
 	int		j;
 
 	haut = 0;
-	j = 0;
+	j = -1;
 	fd = open(args, O_RDONLY);
-	while (j < scene->asset.cmpt_asset_tab)
+	while (++j < scene->asset.cmpt_asset_tab)
 	{
 		tmp = get_next_line(fd);
-		j++;
 		free (tmp);
 	}
 	tmp = get_next_line(fd);
@@ -28,17 +27,16 @@ int	compt_map(char *args, t_scene *scene)
 	}
 	close(fd);
 	callocmap(scene, haut);
-	init_tab_map(args, scene, haut);
+	init_tab_map(args, scene);
 	return (0);
 }
 
-void	init_tab_map(char *args, t_scene *scene, int haut)
+void	init_tab_map(char *args, t_scene *scene)
 {
 	int		fd;
 	int		i;
 	int		j;
 	char	*tmp;
-	(void)haut;
 
 	i = 0;
 	j = 0;
@@ -68,12 +66,12 @@ int	map_is_close(t_scene *scene)
 	int	j;
 	int	comp;
 
-	i = 0;
+	i = -1;
 	comp = 0;
-	while (i < ft_tablen(scene->map.tab_map))
+	while (++i < ft_tablen(scene->map.tab_map))
 	{
-		j = 0;
-		while (j < (int)ft_strlen(scene->map.tab_map[i]))
+		j = -1;
+		while (++j < (int)ft_strlen(scene->map.tab_map[i]))
 		{
 			if (utils_c_w(scene->map.tab_map[i][j], 0) == 1)
 			{
@@ -85,9 +83,7 @@ int	map_is_close(t_scene *scene)
 					return (p_error("Error :\n\tTo many player"));
 			}
 			check_wall(scene->map.tab_map, i, j);
-			j++;
 		}
-		i++;
 	}
 	if (comp < 1)
 		return (p_error("Error :\n\tNo player"));
@@ -104,13 +100,15 @@ int	check_wall(char **tab, int i, int j)
 	}
 	else if (utils_c_w(tab[0][j], 0) == 1)
 		return (p_error("Error:\n\tThe map is not closed 3"));
-	else if (utils_c_w(tab[i][0], 0) == 1 || utils_c_w(tab[i][(int)ft_strlen(tab[i] - 1)], 0) == 1)
+	else if (utils_c_w(tab[i][0], 0) == 1
+		|| utils_c_w(tab[i][(int)ft_strlen(tab[i] - 1)], 0) == 1)
 	{
 		return (p_error("Error:\n\tThe map is not closed 4"));
 	}
 	else if (utils_c_w(tab[i][j], 0) == 1 || tab[i][j] == '0')
 	{
-		if ((utils_c_w(tab[i - 1][j], 1) == 1 || utils_c_w(tab[i + 1][j], 1) == 1)
+		if ((utils_c_w(tab[i - 1][j], 1) == 1
+			|| utils_c_w(tab[i + 1][j], 1) == 1)
 			|| (utils_c_w(tab[i][j - 1], 1) == 1
 				|| utils_c_w(tab[i][j + 1], 1) == 1))
 			return (p_error("Error:\n\tThe map is not closed 5"));

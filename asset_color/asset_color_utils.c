@@ -32,7 +32,6 @@ void	free_d_tab(char **str)
 
 void	convert_tab_char_to_int(char *floor, char *ceiling, t_asset *asset)
 {
-	// exit(0);
 	create_tab_integer_floor(floor, asset);
 	create_tab_integer_ceiling(ceiling, asset);
 }

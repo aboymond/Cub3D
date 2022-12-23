@@ -1,4 +1,4 @@
-#ifndef CUBE3D_H
+#ifndef	CUBE3D_H
 # define CUBE3D_H
 
 # include "libft/libft.h"
@@ -11,8 +11,8 @@
 # define WHI 0x00FFFFFF
 # define WIN_X 1920
 # define WIN_Y 1080
-#define texWidth 64
-#define texHeight 64
+# define texWidth 64
+# define texHeight 64
 # define SPD 0.1
 # define SPDR 1
 # define FOV 0.90
@@ -146,14 +146,6 @@ typedef struct s_map
 	int			y;
 }		t_map;
 
-
-// typedef	struct s_img
-// {
-// 	void	*mlx_img;
-// 	int		width;
-// 	int		height;
-// } t_img;
-
 typedef struct s_scene
 {
 	t_map		map;
@@ -200,7 +192,7 @@ int		malloc_asset(t_asset *asset);
 
 ////////// INIT MAP //////////
 int		compt_map(char *args, t_scene *scene);
-void	init_tab_map(char *args, t_scene *scene, int haut);
+void	init_tab_map(char *args, t_scene *scene);
 int		map_is_close(t_scene *scene);
 int		check_wall(char **tab, int i, int j);
 
@@ -229,6 +221,8 @@ void	convert_tab_char_to_int(char *floor, char *ceiling, t_asset *asset);
 void	create_tab_integer_ceiling(char *str, t_asset *asset);
 void	create_tab_integer_floor(char *str, t_asset *asset);
 int		trim_space_in_path(char	**path);
+int		valid_p_cardinal_name2(char *str, int i);
+
 
 ////////// PLAYER /////////
 int		init_pos_player(t_scene *scene, int y, int x);
@@ -241,7 +235,7 @@ int		key_right(t_player *player);
 int		key_left(t_player *player);
 int		key_down(t_scene *scene, t_player *player);
 int		key_up(t_scene *scene, t_player *player);
-int		key_ESC(int keycode, t_scene *scene);
+int		key_esc(int keycode, t_scene *scene);
 int		key_move2(int keycode, t_scene *scene);
 int		init_pos_player_map(t_scene *scene, int y, int x, int size);
 //int		print_dir(t_scene *scene, int x, int y);
@@ -260,7 +254,7 @@ int		search_player(t_scene *scene);
 
 ////////// FREE //////////
 int		free_main(t_scene *scene);
-void    free_tab(t_scene *scene);
+void	free_tab(t_scene *scene);
 void	free_d_tab(char **str);
 void	tab_free(char *str);
 
@@ -269,7 +263,9 @@ int		comp_size_len(t_scene *scene, char *line);
 int		cpy_map_to_tab(t_scene *scene, char *line, int i);
 int		utils_c_w(char c, int car);
 
-///////// TEST ///////////
+/***
+ **TEST
+ ***/
 int		init_ray(t_scene *scene);
 int		init_miniray(t_scene *scene);
 int		draw_wall(t_scene *scene, int x);
@@ -296,8 +292,7 @@ t_img	*ftmlx_new_img(void *mlx, int width, int height);
 
 //assets
 void	init_assets(t_asset *assets);
-int	load_assets(void *mlx, t_asset *assets);
+int		load_assets(void *mlx, t_asset *assets);
 void	free_assets(void *mlx, t_asset *assets);
-
 
 #endif

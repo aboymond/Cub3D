@@ -37,7 +37,7 @@ int	init_asset(char *args, t_scene *scene)
 	return (0);
 }
 
-int check_asset(t_scene *scene, char *line)
+int	check_asset(t_scene *scene, char *line)
 {
 	if (init_asset_tab(scene, line) == 1)
 	{
@@ -53,7 +53,6 @@ int check_asset(t_scene *scene, char *line)
 int	init_asset_tab(t_scene *scene, char *line)
 {
 	int	i;
-	(void)scene;
 
 	i = 0;
 	while (line[i])

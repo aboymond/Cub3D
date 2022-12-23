@@ -55,6 +55,16 @@ int	valid_p_cardinal_name(char *str, int i)
 			return (-1);
 		}
 	}
+	if (valid_p_cardinal_name2(str, i) == -1)
+	{
+		return (-1);
+	}
+	free(str);
+	return (0);
+}
+
+int	valid_p_cardinal_name2(char *str, int i)
+{
 	if (i == 2)
 	{
 		if (ft_strcmp(str, "WE") != 0)
@@ -71,6 +81,5 @@ int	valid_p_cardinal_name(char *str, int i)
 			return (-1);
 		}
 	}
-	free(str);
 	return (0);
 }
